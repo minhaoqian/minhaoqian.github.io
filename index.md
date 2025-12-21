@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Home
 ---
 
 # Minhao Qian
@@ -10,13 +11,15 @@ Incoming Oxford MSc
 ---
 
 ## About
-I am a Statistics, Economics, and Finance student with a strong interest in
-quantitative finance, data analysis, and applied probability.
+I study statistics, economics, and finance with a strong interest in
+quantitative methods and data analysis.
 
 ## Projects
-- Python simulations of probability theory
-- Statistical modelling and data analysis
-- Quantitative finance foundations
+- Python probability simulations
+- Statistical modelling
+- Financial data analysis
 
 ## Contact
 - GitHub: https://github.com/minhaoqian
+- Email: qianminhao2005@outlook.com
+
