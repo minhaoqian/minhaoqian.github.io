@@ -77,4 +77,4 @@ Jun 2024 – Jul 2024
 ---
 
 ## 📄 Download
-👉 **[Download full CV (PDF)](assets/cv.pdf)**
+👉 **[Download full CV (PDF)](assets/cv.pdf)** 
