@@ -2,6 +2,8 @@
 layout: default
 title: Home
 ---
+<img src="/assets/profile.jpg" width="180">
+
 ## About
 I study statistics, economics, and finance with a strong interest in
 quantitative methods and data analysis.
