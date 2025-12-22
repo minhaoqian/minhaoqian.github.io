@@ -15,3 +15,5 @@ quantitative methods and data analysis.
 - GitHub: https://github.com/minhaoqian
 - Email: qianminhao2005@outlook.com
 
+## 📄 CV
+👉 [View my CV](/cv)
