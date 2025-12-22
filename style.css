@@ -1,0 +1,78 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0b0d10;
+  color: #e6e6e6;
+  line-height: 1.6;
+}
+
+/* Layout */
+.container {
+  min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Profile image */
+.profile {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 24px;
+}
+
+/* Typography */
+h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #b3b3b3;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Links */
+.links a {
+  color: #9cc9ff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1rem;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Sections */
+section {
+  margin-top: 4rem;
+  text-align: left;
+}
+
+section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+section p {
+  color: #cccccc;
+  max-width: 700px;
+}
