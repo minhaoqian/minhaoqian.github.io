@@ -1,36 +1,42 @@
----
-layout: default
-title: Home
----
-<div style="
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minhao Qian</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <img src="/assets/profile.jpg"
-       style="width:180px;border-radius:50%;margin-bottom:20px;">
+<body>
+  <div class="container">
 
-  <h1>Hi, I'm Minhao 👋</h1>
+    <img src="assets/profile.jpg" alt="Profile photo" class="profile">
 
-  <p style="max-width:600px;font-size:1.1em;">
-    Statistics, Economics & Finance student at UCL<br>
-    Incoming Oxford MSc · Quantitative & data-driven finance
-  </p>
+    <h1>Minhao Qian</h1>
 
-  <p>
-    <a href="/projects">Projects</a> ·
-    <a href="/cv">CV</a> ·
-    <a href="mailto:qianminhao2005@outlook.com">Email</a>
-  </p>
+    <p class="subtitle">
+      Statistics, Economics & Finance · UCL<br>
+      Incoming Oxford MSc · Quantitative & data-driven finance
+    </p>
 
-</div>
+    <div class="links">
+      <a href="#projects">Projects</a>
+      ·
+      <a href="cv.pdf">CV</a>
+      ·
+      <a href="mailto:qianminhao2005@outlook.com">Email</a>
+    </div>
 
-<hr>
+    <section id="projects">
+      <h2>About</h2>
+      <p>
+        I am a Statistics undergraduate at University College London with
+        strong interests in quantitative finance, data analysis, and
+        financial modelling. I enjoy working with complex datasets and
+        turning numbers into clear, decision-ready insights.
+      </p>
+    </section>
 
-
-## 📄 CV
-👉 [View my CV](/cv) 
+  </div>
+</body>
+</html>
