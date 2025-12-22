@@ -2,14 +2,6 @@
 layout: default
 title: Home
 ---
-
-# Minhao Qian
-
-**Statistics • Economics • Finance**  
-Incoming Oxford MSc
-
----
-
 ## About
 I study statistics, economics, and finance with a strong interest in
 quantitative methods and data analysis.
