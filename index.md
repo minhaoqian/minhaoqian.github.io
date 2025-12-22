@@ -16,4 +16,4 @@ quantitative methods and data analysis.
 - Email: qianminhao2005@outlook.com
 
 ## 📄 CV
-👉 [View my CV](/cv)
+👉 [View my CV](/cv) 
