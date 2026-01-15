@@ -37,8 +37,10 @@ body {
 .top-nav a {
   margin-left: 20px;
   text-decoration: none;
-  font-size: 15px;
-  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+  color: #f2f2f2;
+  opacity: 0.85;
 }
 
 .top-nav a:hover {
