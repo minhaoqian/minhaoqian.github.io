@@ -79,16 +79,16 @@ section p {
 
 .contact {
   margin: 10px 0;
-  font-size: 1.5em; /* icon size */
+  font-size: 1.5em; 
 }
 
 .contact a {
-  color: #ffffff;        /* set icons to white */
-  margin: 0 15px;        /* spacing between icons */
+  color: #ffffff;        
+  margin: 0 15px;        
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .contact a:hover {
-  color: #00bcd4;        /* hover color */
+  color: #00bcd4;        
 }
