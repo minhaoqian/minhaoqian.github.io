@@ -63,19 +63,19 @@ h1 {
 
 /* Sections */
 section {
-  margin-top: 4rem;
+  margin-top: 2rem;         /* moves section upward */
   text-align: left;
 }
 
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1.2rem;
-}
-
+/* About text */
 section p {
   color: #cccccc;
   max-width: 700px;
+  font-size: 1.15em;        /* slightly larger */
+  line-height: 1.6;         /* easier to read */
+  margin-top: 0;            /* remove extra spacing above text */
 }
+
 
 .contact {
   margin: -5px 0 10px 0;   /* move icons slightly upwards by using negative top margin */
