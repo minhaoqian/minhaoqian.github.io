@@ -76,3 +76,19 @@ section p {
   color: #cccccc;
   max-width: 700px;
 }
+
+.contact {
+  margin: 10px 0;
+  font-size: 1.5em; /* icon size */
+}
+
+.contact a {
+  color: #ffffff;        /* set icons to white */
+  margin: 0 15px;        /* spacing between icons */
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact a:hover {
+  color: #00bcd4;        /* hover color */
+}
