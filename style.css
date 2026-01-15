@@ -126,29 +126,32 @@ section p {
 
 /* ---------- About Page ---------- */
 
-.about-container {
+/* Page layout (About / Projects / Experience / Football) */
+.page-container {
   max-width: 900px;
-  margin: 80px auto;
+  margin: 90px auto;
   padding: 0 20px;
 }
 
-.about-container h1 {
+/* Page title */
+.page-container h1 {
   font-size: 2.4rem;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
   font-weight: 600;
   letter-spacing: -0.5px;
 }
 
-/* Card-style box */
-.about-card {
-  background: #ffffff;
+/* Content card */
+.content-card {
+  background: #fafafa;
   border-radius: 14px;
-  padding: 40px 45px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 42px 46px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
 }
 
-/* Typography */
-.about-card p {
+/* Typography inside cards */
+.content-card p {
+  max-width: 720px;
   font-size: 1.05rem;
   line-height: 1.8;
   color: #333;
@@ -156,8 +159,7 @@ section p {
   text-align: left;
 }
 
-/* Remove extra margin on last paragraph */
-.about-card p:last-child {
+/* Remove extra spacing at bottom */
+.content-card p:last-child {
   margin-bottom: 0;
 }
-
