@@ -70,7 +70,7 @@ section {
 /* About text */
 section p {
   color: #cccccc;
-  max-width: 700px;
+  max-width: 900px;
   font-size: 1.15em;        /* slightly larger */
   line-height: 1.6;         /* easier to read */
   margin-top: 0;            /* remove extra spacing above text */
