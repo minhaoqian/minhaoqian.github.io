@@ -110,3 +110,17 @@ section p {
 .contact a:hover {
   color: #00bcd4;          /* hover color */
 }
+
+/* Content pages */
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.7;
+  color: #444;
+}
+
+.content p {
+  margin-bottom: 1.2rem;
+}
+
