@@ -78,17 +78,17 @@ section p {
 }
 
 .contact {
-  margin: 10px 0;
-  font-size: 1.5em; 
+  margin: -5px 0 10px 0;   /* move icons slightly upwards by using negative top margin */
+  font-size: 1.3em;        /* slightly smaller icons */
 }
 
 .contact a {
-  color: #ffffff;        
-  margin: 0 15px;        
+  color: #ffffff;
+  margin: 0 15px;          /* spacing between icons */
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .contact a:hover {
-  color: #00bcd4;        
+  color: #00bcd4;          /* hover color */
 }
