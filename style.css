@@ -210,7 +210,7 @@ section p {
 }
 
 .content-card ul {
-  margin-bottom: 36px;
+  margin-bottom: 8px;
 }
 
 .project-meta {
@@ -226,7 +226,7 @@ section p {
 }
 
 .project-link {
-  margin-top: -10;   
+  margin-top: 4px;   
   color: #1f5fbf;                
   text-decoration: none;
   font-size: 1.20rem;
