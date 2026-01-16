@@ -213,3 +213,12 @@ section p {
   margin-bottom: 36px;
 }
 
+.project-meta {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: -6px;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
