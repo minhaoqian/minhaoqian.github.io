@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.542">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Analysis of Property Prices and Sales Time</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="regression_modeling_2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="regression_modeling_2_files/libs/quarto-html/quarto.js"></script>
+<script src="regression_modeling_2_files/libs/quarto-html/popper.min.js"></script>
+<script src="regression_modeling_2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="regression_modeling_2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="regression_modeling_2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="regression_modeling_2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="regression_modeling_2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="regression_modeling_2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="regression_modeling_2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Analysis of Property Prices and Sales Time</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="part-1-normal-linear-model---analysis-of-property-prices" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-normal-linear-model---analysis-of-property-prices">Part 1: Normal linear model - Analysis of property prices</h2>
+<section id="introduction-to-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-the-data">Introduction to the data</h3>
+<p>A property development company in Statsville needs to analyze how property sales prices depend on various factors. They have provided the data on 500 properties sold in the last two years, containing 11 covariates with no data missing. The variables in the dataset provided are as follows:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">sales price of the property (measured in Statsland Dollars)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bedroom_count</td>
+<td style="text-align: left;">number of bedrooms in the property</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">other_count</td>
+<td style="text-align: left;">number of other rooms in the property</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">total_count</td>
+<td style="text-align: left;">total number of rooms in the property</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">age of the property (in years)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">district</td>
+<td style="text-align: left;">district of the city where the property is located (district 1, 2, 3, 4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">type of property (either detached, semi_detached, terraced or flat)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">garden</td>
+<td style="text-align: left;">whether or not the property has access to a garden (Y/N)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">area</td>
+<td style="text-align: left;">total internal square footage of the property (measured in metres squared)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">station</td>
+<td style="text-align: left;">distance to the nearest train station (measured in km)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">agent</td>
+<td style="text-align: left;">estate agent who handled the sale (agent A, or B)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The first variable <code>price</code> is the property sales price in Statsland Dollars (SD). It ranges from 140155 to 406305 SD, with a mean of 232590.4 SD. The remaining variables are potential covariates that could be used to build a model for <code>price</code>. In the following section, a closer investigation will be conducted on the relationships between each variable and <code>price</code>. Note that for boxplots presented later, the mean property sales price in each sub-category are indicated by the red dots in each plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<figcaption>Relationships between property price and the number of bedrooms (left), other rooms (middle), and total rooms (right).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The variables <code>bedroom_count</code>, <code>other_count</code>, and <code>total_count</code> represent the number of bedrooms, the number of rooms other than bedrooms, and the total number of rooms in the property. From Figure 1, we can observe that the property sales prices generally tend to increase with all three variables. In Figure 1 (right), there is a slight violation of the overall trend when total room number equals to 11. However, we only have 1 sample of sales price under this circumstance, and thus should not raise any concerns.</p>
+<p>It is worth noting that the trends in these plots appear to be highly similar; the total number of rooms is the sum of the number of bedrooms and other rooms. This could potentially raise collinearity issues in the model building process in the future.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%"></p>
+<figcaption>Relationships between the property price and its district (left) and type (right).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 2 (left) shows the sales price of property located in different districts. It is notable that the mean sales price of property in district 2 is higher than that in other districts, with 254298.21 SD. Property sales prices in other districts share a similar mean at around 216,000 SD. Furthermore, most properties sold were located in district 2 (212 out of 500). Detached houses appear to be sold for a higher price than others, with a mean difference of 22635.85 SD.</p>
+<p>As shown in Figure 3, property sales prices are analyzed based on the availability of <code>garden</code> and the estate <code>agent</code> who handled the sale. In both graphs, there are no significant differences in the mean and the range of prices between the two sub-categories. Therefore, accessibility to a garden and choice of the estate agent do not appear to influence property prices significantly.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%"></p>
+<figcaption>Relationships between the property price and availability of garden (left) and agents (right).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<p>The three scatterplots in Figure 4 illustrate the sales prices of properties that have different <code>ages</code> (in years), <code>areas</code> (in <span class="math inline">\(m^2\)</span>), and distance to the nearest <code>station</code> (in km). Figure 4 (left) indicates a slightly negative correlation between sales price and age of the property. This is sensible as older property tends to be cheaper. No obvious trend has been demonstrated in Figure 4 (middle), suggesting that the area of the property does not significantly impact the sales price itself. Yet further investigations may be needed. Figure 4 (right) indicates a positive correlation between sales price and distance to the nearest station, which seems counter-intuitive. Further investigations are required to determine the relationship between property sales price and these variables.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<figcaption>Relationships between the property price and age (left), area (middle), and distance to nearest station (right).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Additionally, there exists an influential observation in the dataset, i.e., the data point with the maximum property price: 406305 SD. This point stands out from the main bulk of the data, suggesting its potential influence on the least squares line.</p>
+<p>In conclusion, the initial findings suggest that sales <code>price</code> of a property could be potentially influenced by: <code>bedroom_count</code>, <code>other_count</code>, <code>total_count</code>, <code>district</code>, <code>type</code>, <code>age</code>, <code>station</code>, and <code>area</code>. Interactions among the covariates are also worth exploring, as unmentioned covariates might significantly influence outcomes as well. Therefore, all variables analyzed above should be accounted for when constructing a statistical model for property sales prices.</p>
+</section>
+<section id="model-building" class="level3">
+<h3 class="anchored" data-anchor-id="model-building">Model building</h3>
+<p>To establish a basic understanding of relationship between the response variable and the covariates, we first build a full model using all the covariates provided in the data set. However, instead of letting R automatically treat the <code>district</code> variable as a numeric variable, we manually convert it into a categorical data. Hence, we obtain our first model as shown below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>        Call:
+        lm(formula = price ~ . - district + as.factor(district), data = prices)
+        
+        Residuals:
+           Min     1Q Median     3Q    Max 
+        -25490  -5236   -814   3043 125602 
+        
+        Coefficients: (1 not defined because of singularities)
+                              Estimate Std. Error t value Pr(&gt;|t|)    
+        (Intercept)          149983.86    6415.57  23.378  &lt; 2e-16 ***
+        bedroom_count         14592.83     634.00  23.017  &lt; 2e-16 ***
+        other_count            6171.44     663.93   9.295  &lt; 2e-16 ***
+        total_count                 NA         NA      NA       NA    
+        age                   -1872.76      46.36 -40.396  &lt; 2e-16 ***
+        typeflat               1197.63    3603.07   0.332    0.740    
+        typesemi_detached      3519.61    3093.67   1.138    0.256    
+        typeterraced            406.77    2902.95   0.140    0.889    
+        gardenY                9669.03    1404.02   6.887 1.77e-11 ***
+        area                    351.27      32.99  10.649  &lt; 2e-16 ***
+        station                5165.98     570.60   9.054  &lt; 2e-16 ***
+        agentB                 -695.35    1058.43  -0.657    0.512    
+        as.factor(district)2  20769.50    2521.21   8.238 1.64e-15 ***
+        as.factor(district)3 -13643.11    2039.93  -6.688 6.23e-11 ***
+        as.factor(district)4   1717.50    1733.29   0.991    0.322    
+        ---
+        Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+        
+        Residual standard error: 11710 on 486 degrees of freedom
+        Multiple R-squared:  0.9066,    Adjusted R-squared:  0.9041 
+        F-statistic: 362.9 on 13 and 486 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>However, as we can see from the model summary, covariates such as <code>total_count</code>, <code>type</code>, and <code>agent</code> are all insignificant. It is noticeable that collinearity exists between <code>bedroom_count</code>, <code>other_count</code>, and <code>total_count</code> as the value of the third variable can be obtained by adding up the corresponding values of the first two variables. Therefore, we need to exclude one of the variables to make the model valid. Considering the importance of <code>bedroom_count</code> and <code>total_count</code> contributing to the house price, we choose to exclude the variable <code>other_count</code>. We also exclude the variables <code>type</code> and <code>agent</code> as they do not show any significance in the normal regression model. The updated model is as shown below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>        Call:
+        lm(formula = price ~ . - district + as.factor(district) - other_count - 
+            agent - type, data = prices)
+        
+        Residuals:
+           Min     1Q Median     3Q    Max 
+        -25862  -5221   -876   3528 126360 
+        
+        Coefficients:
+                              Estimate Std. Error t value Pr(&gt;|t|)    
+        (Intercept)          151720.71    3209.61  47.271  &lt; 2e-16 ***
+        bedroom_count          8315.70    1157.82   7.182 2.57e-12 ***
+        total_count            6218.26     660.87   9.409  &lt; 2e-16 ***
+        age                   -1872.84      46.14 -40.587  &lt; 2e-16 ***
+        gardenY                9989.89    1216.66   8.211 1.96e-15 ***
+        area                    339.33      22.19  15.294  &lt; 2e-16 ***
+        station                5179.20     569.58   9.093  &lt; 2e-16 ***
+        as.factor(district)2  20586.43    2502.46   8.226 1.75e-15 ***
+        as.factor(district)3 -13597.25    2035.56  -6.680 6.51e-11 ***
+        as.factor(district)4   1757.60    1724.26   1.019    0.309    
+        ---
+        Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+        
+        Residual standard error: 11700 on 490 degrees of freedom
+        Multiple R-squared:  0.9059,    Adjusted R-squared:  0.9041 
+        F-statistic:   524 on 9 and 490 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<p>Since this is a nested model of the first model we built, we can compare the two models using an F-test. From the below ANOVA table, we can conclude that our updated model outperforms the original model since the p-value is significantly larger than 0.05.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>ANOVA Table of Model 1 and Model 2.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Res.Df</th>
+<th style="text-align: center;">RSS</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum of Sq</th>
+<th style="text-align: center;">F</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">490</td>
+<td style="text-align: center;">6.71e+10</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">486</td>
+<td style="text-align: center;">6.66e+10</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5.27e+08</td>
+<td style="text-align: center;">0.9609198</td>
+<td style="text-align: center;">4.29e-01</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Notice that all the covariates in our second model are significant but one – that is, the 4th district. Since other <code>district</code> variables are considered significant in our model, we believe it is possible to find a way to make this variable useful. It is intuitive that the housing price is related to both its area and its location. Therefore, we add an interaction between the area and the district and hence obtain our final model as presented below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>        Call:
+        lm(formula = price ~ . - district + as.factor(district) * area - 
+            other_count - agent - type, data = prices)
+        
+        Residuals:
+           Min     1Q Median     3Q    Max 
+        -38586  -4976   -609   3714  64651 
+        
+        Coefficients:
+                                   Estimate Std. Error t value Pr(&gt;|t|)    
+        (Intercept)               121427.88    4456.87  27.245  &lt; 2e-16 ***
+        bedroom_count               8464.27    1070.22   7.909 1.76e-14 ***
+        total_count                 6069.05     610.67   9.938  &lt; 2e-16 ***
+        age                        -1874.32      42.76 -43.835  &lt; 2e-16 ***
+        gardenY                    10771.00    1126.81   9.559  &lt; 2e-16 ***
+        area                         654.96      40.11  16.330  &lt; 2e-16 ***
+        station                     5241.75     527.05   9.945  &lt; 2e-16 ***
+        as.factor(district)2       55136.75    5168.81  10.667  &lt; 2e-16 ***
+        as.factor(district)3       31008.23    6182.36   5.016 7.42e-07 ***
+        as.factor(district)4       44070.79    5372.12   8.204 2.10e-15 ***
+        area:as.factor(district)2   -365.38      50.88  -7.182 2.60e-12 ***
+        area:as.factor(district)3   -459.92      60.19  -7.641 1.15e-13 ***
+        area:as.factor(district)4   -439.22      53.26  -8.247 1.52e-15 ***
+        ---
+        Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+        
+        Residual standard error: 10810 on 487 degrees of freedom
+        Multiple R-squared:  0.9202,    Adjusted R-squared:  0.9183 
+        F-statistic: 468.2 on 12 and 487 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>As can be seen from the model summary above, we have used most of the covariates in the data set, and all the covariates used in the final model are significant. As the ANOVA table shows below, by conducting another F-test, we observe a tiny p-value indicating that there is strong evidence that our final chosen model is preferred.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>ANOVA Table of Model 2 and Model 3.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Res.Df</th>
+<th style="text-align: center;">RSS</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum of Sq</th>
+<th style="text-align: center;">F</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">490</td>
+<td style="text-align: center;">6.71e+10</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">487</td>
+<td style="text-align: center;">5.69e+10</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1.02e+10</td>
+<td style="text-align: center;">29.22832</td>
+<td style="text-align: center;">2.16e-17</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="model-checking" class="level3">
+<h3 class="anchored" data-anchor-id="model-checking">Model checking</h3>
+<ul>
+<li><strong>Model Fit.</strong> According to the model summary mentioned above, the adjusted R-squared of our final chosen model is <span class="math inline">\(0.9183\)</span>, indicating that roughly <span class="math inline">\(91.83\%\)</span> of the variations in the property prices can be explained our model and suggesting a potentially good fit. We check the model fit of our final chosen model by plotting the its residuals. As can be seen from Figure 5, the range of the residuals of our final model has reduced to almost half of that of the original full model, indicating that the accuracy has improved to certain extent. Despite that, the residuals of our final model generally fluctuate between <span class="math inline">\(-25000\)</span> and <span class="math inline">\(50000\)</span> SD with a <span class="math inline">\(0\)</span> mean, and most residuals are constraint within the range <span class="math inline">\(\pm 25000\)</span> SD, which is roughly <span class="math inline">\(21.5\%\)</span> of the mean property price in Statsville.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%"></p>
+<figcaption>Comparison of residuals of model 1 and model 3.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Linearity and Homoscedasticity.</strong> We plot the residuals and the standardized residuals over the fitted values to check the linearity and homoscedasticity assumptions in our model. As can be seen from the plot on the left, despite the slight curvature demonstrated on the red LOESS regression line, indicating that we might need to take further investigations on certain terms, no severe violations of linearity has been shown. Furthermore, while there’s a slight increase in the spread of residuals for lower fitted values, the residuals generally appear relatively evenly distributed around 0, maintaining a constant spread and demonstrating evidence of homoscedasticity. As a result, we have justified our use of a normal linear model since both linearity and homoscedasticity assumptions are met, as required.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%"></p>
+<figcaption>Residuals and standardized residuals versus fitted values.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Normality of the Errors.</strong> As can be seen from Figure 7 below, there’s a clear departure from the acceptable range (highlighted in light gray) of the QQ-line, demonstrating that the normality assumption of the errors is not met. However, it does not affect our use of a normal linear model, we will further elaborate on this and the method to alleviate it in the limitation analysis later.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%" data-fig-pos="H"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>In conclusion, according to our model, the sales prices of the properties on Statsville are related to various factors including the number of bedrooms, the number of rooms in total, property age, garden availability, total area, distance to nearest train station, and district location. In general, properties with a garden, more rooms, larger areas, and greater distance from the train station tend to be more expensive. On the other hand, demonstrated by the negative coefficient, the older the property, the cheaper it is. Furthermore, housing prices in District 2 are significantly higher compared to those in District 1, followed by District 4 and District 3. It is also worth noticing that the district location can also be investigated together with the area of the property. However, the additional change in the property price per unit change in the property area for properties in District 2, 3, and 4 is smaller that that of properties for District 1. Using these tendencies described in our model, we can approximate the sales price of the properties rather accurately.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="limitations-and-potential-alleviation-strategies" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-and-potential-alleviation-strategies">Limitations and Potential Alleviation Strategies</h3>
+<p>To begin with, in order to get rid of collinearity and insignificant covariates, we choose not to include covariates such as <code>agent</code> and <code>type</code>; therefore, our model may not be as thorough and comprehensive. Secondly, even though our model roughly met the linearity and homoscedasticity assumptions, slight departures from both assumptions still exist, implying that further investigations on certain terms may be required. More importantly, as mentioned above, the normality of error components in the model has not yet been satisfied. While this does not affect the estimation of coefficients in a normal linear model, it can impact the validity of statistical tests and confidence intervals for various model components. Apart from that, more covariates could be included to create a better model for the <code>price</code>. For example, the number of schools within the neighborhood where the property is located. With a higher number of schools, the property could be more desirable due to the likelihood of accessing quality education. This covariate may also create new interaction terms with others. Nevertheless, considering the principle of parsimony and interpretability of the model, more statistical tests could be carried out to examine whether the new variables significantly explain the variation in the response variable.</p>
+</section>
+</section>
+<section id="part-2-generalised-additive-model---analysis-of-sales-times" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-generalised-additive-model---analysis-of-sales-times">Part 2: Generalised additive model - Analysis of sales times</h2>
+<section id="simple-exploratory-analysis-and-model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="simple-exploratory-analysis-and-model-selection">Simple Exploratory Analysis and Model Selection</h3>
+<p>Now, we are required to develop either a generalized linear regression model (GLM) or a generalized additive regression model (GAM) for the variable <code>quick_sale</code>, where <code>quick_sale</code> indicates whether the property was sold within two months (with value 1) or in more than two months (with value 0). Based on the model, the aim is to choose an agent who will maximize the chance of a quick sale. The two covariates are:</p>
+<p><span class="math display">\[\begin{cases}
+\text{Price: the sales price of the property in SD} \\
+\text{Agent: the estate agent (A or B) who handled the sale}
+\end{cases}\]</span></p>
+<p>To start with, a simple exploratory analysis can be carried for choosing an appropriate model. The plot below depicts the relationship between the probability of a quick sale and the property prices for agent A and B. Property prices are split into different bins and the proportion of quick sales in each interval is displayed by red dots (intervals with no red dots means no data is associated with this range).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%" data-fig-pos="H"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since we have a binary response variable, relating to the successes and failures of a quick sale, a Bernoulli distribution or a Binomial distribution with <span class="math inline">\(n=1\)</span> is appropriate. Besides, both distributions belong to the exponential family, so it is sensible to construct a model using a GLM or GAM.</p>
+<p>Within both agents, parametric functions that might model the relationship between the sales price of the property and the probability of a quick sale can hardly be identified. Therefore, it seems reasonable to take a non-parametric approach and thus use a generalized additive regression model. Furthermore, observing that the general pattern of the relationship between prices and the probability of quick sales differ between agents, an interaction term can be included in the model.</p>
+<p>Combining the above considerations, the model for the variable <code>quick_sale</code> is a generalized additive regression model taking <code>price</code>, <code>agent</code>, and their interaction with a binomial family and a logit link function. A logit link can restrict the mean to between 0 and 1, since we are estimating the probability associated with each observation. A summary of the model output is shown as below:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>        Family: binomial 
+        Link function: logit 
+        
+        Formula:
+        quick_sale ~ s(price, by = agent) + agent
+        
+        Parametric coefficients:
+                    Estimate Std. Error z value Pr(&gt;|z|)
+        (Intercept)   -18.71      11.94  -1.566    0.117
+        agentB         18.98      11.95   1.589    0.112
+        
+        Approximate significance of smooth terms:
+                          edf Ref.df Chi.sq p-value    
+        s(price):agentA 7.517  7.936   7.14   0.485    
+        s(price):agentB 4.656  5.618  42.00  &lt;2e-16 ***
+        ---
+        Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+        
+        R-sq.(adj) =  0.429   Deviance explained = 43.3%
+        UBRE = -0.25869  Scale est. = 1         n = 500</code></pre>
+</div>
+</div>
+</section>
+<section id="assessing-the-model-fit" class="level3">
+<h3 class="anchored" data-anchor-id="assessing-the-model-fit">Assessing the Model Fit</h3>
+<p>To assess the model fit, we plot the fitted values of the model versus the covariate <code>price</code> as shown below in Figure 7. There seems to be a reasonable alignment between the fitted probabilities and the previous empirical results while spotting some deviations at certain price ranges. Hence, the model fit is considered to be good.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:66.7%"></p>
+<figcaption>Plot of fitted values of the model against the sales prices with colored dots indicating the probability of a quick sale in each interval</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="main-features-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="main-features-of-the-model">Main features of the model</h3>
+<p>The plots of smooth terms tell the story of what the model is doing. The plot on the left shows how the price affects the estimated probability of a quick sale for Agent A. It shows that when the sales price is less than 200,000 SD or between 270,000 SD and 300,000 SD, higher-priced properties are more likely to sell quickly. The plot on the right illustrates that in agent B, when prices are below 225,000 SD, the probability is disproportional to the sales prices, while the positive relationship starts from property values greater than 250,000 SD.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_modeling_2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Plots of smooth terms against prices</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="choice-between-agents" class="level3">
+<h3 class="anchored" data-anchor-id="choice-between-agents">Choice between agents</h3>
+<p>To choose which estate agent to employ to maximize the chance of a quick sale given that the property will be sold for 200,000 SD, a prediction from the model is displayed below:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Predicted probability for a quicksale given the 200,000 SD property price.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Agent A</th>
+<th style="text-align: right;">Agent B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fit</td>
+<td style="text-align: right;">0.0953505</td>
+<td style="text-align: right;">0.5667283</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">se.fit</td>
+<td style="text-align: right;">0.0938841</td>
+<td style="text-align: right;">0.0796898</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>According to the result shown in Table 3, agent B is associated with a higher probability and a smaller standard error meaning less uncertainty. Therefore, the manager should employ Agent B to sell his property.</p>
+<p><br>
+</p>
+<p><strong>Total word count:</strong> 2375</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

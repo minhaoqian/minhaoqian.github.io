@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.542">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="GROUP 50">
+
+<title>Predicting Brexit: A High-Dimensional Demographic Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="computing_for_practical_statistics_files/libs/clipboard/clipboard.min.js"></script>
+<script src="computing_for_practical_statistics_files/libs/quarto-html/quarto.js"></script>
+<script src="computing_for_practical_statistics_files/libs/quarto-html/popper.min.js"></script>
+<script src="computing_for_practical_statistics_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="computing_for_practical_statistics_files/libs/quarto-html/anchor.min.js"></script>
+<link href="computing_for_practical_statistics_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="computing_for_practical_statistics_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="computing_for_practical_statistics_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="computing_for_practical_statistics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="computing_for_practical_statistics_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#geographic-information" id="toc-geographic-information" class="nav-link" data-scroll-target="#geographic-information">Geographic Information</a></li>
+  <li><a href="#population-and-demographics" id="toc-population-and-demographics" class="nav-link" data-scroll-target="#population-and-demographics">Population and Demographics</a></li>
+  <li><a href="#housing" id="toc-housing" class="nav-link" data-scroll-target="#housing">Housing</a></li>
+  <li><a href="#education-level" id="toc-education-level" class="nav-link" data-scroll-target="#education-level">Education Level</a></li>
+  <li><a href="#employment" id="toc-employment" class="nav-link" data-scroll-target="#employment">Employment</a></li>
+  <li><a href="#socioeconomic-indicators" id="toc-socioeconomic-indicators" class="nav-link" data-scroll-target="#socioeconomic-indicators">Socioeconomic Indicators</a></li>
+  <li><a href="#social-status" id="toc-social-status" class="nav-link" data-scroll-target="#social-status">Social Status</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates">Covariates </a></li>
+  </ul></li>
+  <li><a href="#generalized-linear-model-glm" id="toc-generalized-linear-model-glm" class="nav-link" data-scroll-target="#generalized-linear-model-glm">Generalized Linear Model (GLM)</a>
+  <ul class="collapse">
+  <li><a href="#model-assumptions" id="toc-model-assumptions" class="nav-link" data-scroll-target="#model-assumptions">Model Assumptions</a></li>
+  <li><a href="#model-building" id="toc-model-building" class="nav-link" data-scroll-target="#model-building">Model Building</a></li>
+  <li><a href="#model-checking" id="toc-model-checking" class="nav-link" data-scroll-target="#model-checking">Model Checking</a></li>
+  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions">Predictions</a></li>
+  </ul></li>
+  <li><a href="#limitations-and-enhancements" id="toc-limitations-and-enhancements" class="nav-link" data-scroll-target="#limitations-and-enhancements">Limitations and Enhancements</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Predicting Brexit: A High-Dimensional Demographic Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>GROUP 50 </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="page-break-after: always;"></div>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>The United Kingdom European Union membership referendum, commonly known as the Brexit referendum, was held on 23 June 2016. Voters were asked whether the United Kingdom should remain a member of the European Union or leave it. The result was a narrow victory for Leave, with 51.9% of votes cast in favor across the United Kingdom, and 53.4% across England. Understanding the factors influencing the Leave vote is pivotal for gaining insights into the political, economic, and social divisions within the UK.</p>
+<p>In this project, we analyze data collected from individual wards to explore how demographic, social, and economic characteristics shaped voting outcomes across different regions in England. We aim to build an effective statistical model using data from the first 803 wards, where the voting outcomes are known, and then use this model to predict the outcomes of the remaining 267 wards.</p>
+<p>The response variable is the proportion of Leave votes in each ward, calculated by dividing the number of Leave votes by the total number of votes cast. The dataset also contains a wide range of social, economic, and demographic features, comprising more than 40 explanatory variables. For clarity and structure, these variables are grouped into thematic categories based on their characteristics and relevance.</p>
+<section id="geographic-information" class="level2">
+<h2 class="anchored" data-anchor-id="geographic-information">Geographic Information</h2>
+<p>This category includes <code>AreaType</code> and <code>RegionName</code>, which describe the structural and regional context of each ward. The geographical identity of a ward can influence political attitudes due to historical, cultural, and policy differences.</p>
+<p>The attribute <code>AreaType</code> classifies wards into four categories according to the type of administrative area in which the ward is located: E06 (unitary authorities), E07 (non-metropolitan districts), E08 (metropolitan districts), and E09 (London boroughs). <code>RegionName</code> identifies the broader region, with values such as <code>North East</code>, <code>North West</code>, <code>Yorkshire and The Humber</code>, <code>East Midlands</code>, <code>West Midlands</code>, <code>East of England</code>, <code>London</code>, <code>South East</code>, and <code>South West</code>.</p>
+<p>Wards in areas E06, E07, and E08 contain higher proportions of Leave votes, reaching around 60%, while E09 stands out with a majority supporting Remain. This reflects the urban–rural divide, as E09 corresponds to more urbanized regions. At the regional level, <code>Yorkshire and The Humber</code> has the highest proportion of Leave votes (around 60%), whereas <code>East of England</code> and <code>London</code> leaned more toward Remain, with London’s Leave share just over 40%. These patterns closely mirror the trends observed in <code>AreaType</code>, highlighting how geography shaped voting behavior.</p>
+</section>
+<section id="population-and-demographics" class="level2">
+<h2 class="anchored" data-anchor-id="population-and-demographics">Population and Demographics</h2>
+<p>This group encompasses <code>Residents</code> (number of permanent residents), <code>Households</code> (number of households), <code>MeanAge</code> (mean age of permanent residents), and <code>AdultMeanAge</code> (mean age of adults), along with a detailed breakdown of the population by age groups and ethnicity. These variables describe the size, composition, and diversity of the population, factors often linked to political preferences.</p>
+<p>For ethnicity, the dataset provides proportions of several groups, including <code>White</code>, <code>Black</code>, <code>Asian</code>, <code>Indian</code>, and <code>Pakistani</code> populations. For age, data are provided across 16 detailed age bands. To simplify our model, we regrouped these into four broader categories:</p>
+<ul>
+<li>Minors: 0 - 17</li>
+<li>Young Voters: 18 - 29</li>
+<li>Working Age Adults: 30 - 64</li>
+<li>Retired Adults: 65+</li>
+</ul>
+<p>By observing the scatterplots, we can explore how voting outcomes vary across demographic features. Both age and ethnicity variables show limited linear associations with the Leave vote proportion. Similarly, the variables <code>Residents</code> and <code>Households</code> exhibit very weak relationships. These findings suggest that the relationships between the demographic covariates and voting outcomes may be non-linear, motivating the use of more flexible modeling approaches in later stages.</p>
+</section>
+<section id="housing" class="level2">
+<h2 class="anchored" data-anchor-id="housing">Housing</h2>
+<p>The dataset contains four variables capturing the education levels of voters: <code>Owned</code> (percentage of households owning their accommodation), <code>OwnedOutright</code>, <code>SocialRent</code> (percentage of households renting from social landlords), and <code>PrivateRent</code>. These capture the housing tenure patterns within each ward. Housing status often reflects socioeconomic standing and long-term stability, which can influence voting behavior.</p>
+<p>By plotting the variables against the response variables, the scatterplots suggest a weak negative linear association between <code>PrivateRent</code> and the proportion of Leave votes, indicating that areas with a higher proportion of households renting from private landlords tend to have slightly lower support for Leave. Other housing types, such as <code>Owned</code> and <code>OwnedOutright</code>, show no significant impact on the voting outcomes.</p>
+</section>
+<section id="education-level" class="level2">
+<h2 class="anchored" data-anchor-id="education-level">Education Level</h2>
+<p>This category contains four variables: <code>NoQuals</code> (percentage of permanent residents without academic or professional qualifications), <code>L1Quals</code> (percentage of permanent residents with Level 1 qualifications), <code>L4Quals_plus</code> (percentage of permanent residents with degree-level education or higher), and <code>Students</code> (percentage of permanent residents still in education). These indicators help describe the educational composition of each ward, a key factor often linked to political attitudes.</p>
+<p>As shown in the scatterplots in Figure <span class="math inline">\(\ref{fig:scatterplot}\)</span>, there are noticeable trends between the education level of voters and the voting outcomes. The first two scatterplots demonstrate moderate positive relationships between the proportion of Leave votes and both <code>NoQuals</code> and <code>L1Quals</code>. Conversely, in the last scatterplot, the proportion of Leave votes declines as <code>L4Quals_plus</code> increases, suggesting that people with higher levels of educational background tend to favor Remain, while those with lower education levels are more inclined to support Leave.</p>
+</section>
+<section id="employment" class="level2">
+<h2 class="anchored" data-anchor-id="employment">Employment</h2>
+<p>The Employment category depicts the occupations and employment of voters via <code>Unemp</code> (percentage of permanent residents who are unemployed), <code>UnempRate_EA</code> (percentage of economically active residents who are unemployed), <code>HigherOccup</code> (percentage of permenant residents in “higher-level” occupations), and <code>RoutineOccupOrLTU</code> (percentage of permanent residents in “routine” occupations or who are long-term unemployed). Theese variables are potential factors influencing the political preferences of voters as they provide insights into economic stability and social class.</p>
+<p>It could be observed from scatterplots that there is very little connection between the proportion of Leave votes and the unemployment rate. However, there exists a moderate negative relationship between the variable <code>HigherOccup</code> and the proportion of Leave votes, and a positive relationship between the variable <code>RoutineOccupOrLTU</code> and Leave votes. This may suggest that residents with higher-level occupations may tend to favor Remain whereas those have a “routine” occupations or who are long-term unemployed are more likely to vote Leave.</p>
+</section>
+<section id="socioeconomic-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="socioeconomic-indicators">Socioeconomic Indicators</h2>
+<p>The indicators <code>Density</code> (Population Density), <code>Deprived</code> (percentage of households that are ‘deprived’ in at least one of four dimensions), and <code>MultiDepriv</code> summarize broader social and economic conditions. These indicators are important for understanding contextual hardship or privilege that may drive political discontent or support.</p>
+<p>There is a moderate correlation between population density and Leave votes, suggesting that more densely populated areas tend to have a smaller proportion of Leave votes. However, the correlation between deprivation indicators and Leave votes is weak. This suggests that areas with higher deprivation levels do not necessarily show stronger Leave support.</p>
+</section>
+<section id="social-status" class="level2">
+<h2 class="anchored" data-anchor-id="social-status">Social Status</h2>
+<p>This final category includes <code>C1C2DE</code> (percentage of households in ‘social grades’ C1,C2,D,E), <code>C2DE</code>, and <code>DE</code>, which represent segments of the UK’s social grade system. These grades demonstrate class and consumption patterns, correlating with voting behavior. Using these variables, we can obtain the proportion of households in each social grade by the following transformation:</p>
+<ul>
+<li>Grade A and B = 100 - C1C2DE</li>
+<li>Grade C1 = C1C2DE − C2DE</li>
+<li>Grade C2 = C2DE − DE</li>
+<li>Grade D and E = DE</li>
+</ul>
+<p>There is a moderate negative linear correlation between the proportion of households in social grades A and B and Leave votes, suggesting that richer areas tend to support Remain, yet no clear pattern is found for grades C1 and DE. In contrast, there is a strong positive correlation between Leave votes and the proportion of households in grade C2. These results suggest that wards with more upper-class residents tend to vote Remain, while areas with more lower-middle-class households are more likely to support Leave.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Our exploratory analysis suggests that voting outcomes are influenced by a range of demographic, social, and economic factors. Education emerges as the strongest predictor, with higher Leave proportions linked to lower qualification levels and negatively correlated with higher education. Social grade is also important: areas with more lower-middle-class (C2) households show a strong positive association with Leave votes, while wealthier areas tend to prefer Remain. Moderate relationships are observed for housing type (especially private renting) and occupational status (particularly routine occupations and long-term unemployment). In contrast, age, ethnicity, and deprivation indicators show weaker relationships. These findings imply that linear models may not fully capture the complexity of these associations, and further investigation is needed. All of these covariates will be considered in building the final model.</p>
+</section>
+</section>
+<section id="model-selection" class="level1">
+<h1>Model Selection</h1>
+<p>Since we are modeling the proportion of Leave votes, it is important to select a model that accounts for the bounded nature of the data. Given that proportions lie between 0 and 1, logistic regression is ideal, as it models the log-odds of the outcome and ensures predictions remain within bounds.</p>
+<p>As each vote can be considered a success or failure (Leave or Remain), we model the response as arising from a binomial process and therefore choose the binomial distribution as the family for our logistic regression.</p>
+<p>Preliminary analysis suggests a parametric relationship between predictors and outcomes, motivating the use of a Generalized Linear Model (GLM). We therefore fit a binomial GLM with a logit link.</p>
+</section>
+<section id="data-preparation" class="level1">
+<h1>Data Preparation</h1>
+<section id="principal-component-analysis-pca" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h2>
+<p>Previous exploratory analysis shows the dataset contains over 40 covariates grouped into categories like Education, Housing, Employment, and etc. Collinearity within these groups also needs to be addressed.</p>
+<p>To reduce dimensionality and address multicollinearity, we apply Principal Component Analysis (PCA) within each covariate category (except socioeconomic indicators with only two factors). This allows us to extract the main dimensions of variation and retain most of the original information while reducing the number of predictors. We extract enough principal components to explain at least 70% of the total variance within each group. As shown in the scree plots in Figure <span class="math inline">\(\ref{fig:screeplots}\)</span> in the appendix, we choose the first components for Housing, Education, and Employment (<code>PC1_Housing</code>, <code>PC1_Education</code>, and <code>PC1_Employment</code>), and the first two principal components for Ethnicity, Age and Social Status (<code>PC1_Ethnicity</code>, <code>PC2_Ethnicity</code>, <code>PC1_Age</code>, <code>PC2_Age</code>, <code>PC1_SocialStatus</code>, and <code>PC2_SocialStatus</code>).</p>
+<p>These principal components will be included as covariates in the binomial GLM to provide a parsimonious yet informative model of voting behavior.</p>
+</section>
+<section id="clustering" class="level2">
+<h2 class="anchored" data-anchor-id="clustering">Clustering</h2>
+<p>To explore regional patterns and reduce data dimensionality, we perform hierarchical clustering based on the means of key covariates. After standardizing these means for each region, we compute pairwise distances and apply hierarchical clustering using the complete linkage method.</p>
+<p>The resulting dendrogram in Figure <span class="math inline">\(\ref{fig:dendrogram}\)</span> shows how regions separate based on their covariate profiles. By cutting the dendrogram at a height of 9 (marked by the red dashed line), we identify four clusters. Each region is assigned to a cluster, now recorded in the <code>RegionCluster</code> variable added to the dataset.</p>
+<p>This clustering approach reveals regional similarities and differences and enables more focused analysis within each cluster.</p>
+</section>
+<section id="covariates" class="level2">
+<h2 class="anchored" data-anchor-id="covariates">Covariates </h2>
+<p>We have succcessfully reduced the dimensionality of our data by conducting multiple PCA and a clustering. The final covariates we are using for model building are: <code>RegionCluster1</code>, <code>RegionCluster2</code>, <code>RegionCluster3</code>, <code>RegionCluster4</code>, <code>PC1_Ethnicity</code>, <code>PC2_Ethnicity</code>, <code>PC1_Housing</code>, <code>PC1_Education</code>, <code>PC1_Employment</code>, <code>PC1_Age</code>, <code>PC2_Age</code>, <code>PC1_SocialStatus</code>, <code>PC2_SocialStatus</code>, and <code>Density</code>, <code>MultiDepriv</code>.</p>
+</section>
+</section>
+<section id="generalized-linear-model-glm" class="level1">
+<h1>Generalized Linear Model (GLM)</h1>
+<section id="model-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="model-assumptions">Model Assumptions</h2>
+<p><strong>Independence.</strong> The response variables are independently distributed.</p>
+<p><strong>Response Variable.</strong> The dispersion parameter estimate of 1 verifies the appropriateness of the binomial distribution assumption. It is also assume that there are linear relationships between the transformed expected response in terms of the link function and the explanatory variables, which can be verified by plotting the transformed response variables against the covariates in scatterplots.</p>
+<p><strong>Multicollinearity.</strong> As shown in the absolute correlation heatmap in Figure <span class="math inline">\(\ref{fig:corheatmap}\)</span>, correlations between covariates are generally within an acceptable range, with only a few groups—specifically Education, Employment, Social Grades, and Deprivation—exhibiting relatively high correlations. This is reasonable, as educational attainment can influence future employment opportunities and socioeconomic status. These findings are further supported by examining the Variance Inflation Factors (VIF) for each covariate, with most VIF values remaining below 10. However, owing to space limitations, the detailed VIF results are not presented here.</p>
+<p><strong>Errors.</strong> Errors are assumed to be independent but not necessarily normal.</p>
+</section>
+<section id="model-building" class="level2">
+<h2 class="anchored" data-anchor-id="model-building">Model Building</h2>
+<p>We choose the above mentioned covariates and link function to build the Generalized Linear Model: <span class="math display">\[\text{logit}(P_i) = \log\left(\frac{P_i}{1-P_i}\right) = \beta^T \mathbf{x} + \epsilon_i,\]</span></p>
+<p>where <span class="math inline">\(P_i\)</span> stands for the proportion of Leave votes at each ward, <span class="math inline">\(\beta\)</span> is the vector of coefficients, <span class="math inline">\(\epsilon_i\)</span> is the random error, and <span class="math inline">\(\textbf{x}\)</span> is the vector of a 1 (to capture the intercept) and the covariates as previously introduced in Section <span class="math inline">\(\ref{covariates}\)</span>: <span class="math inline">\(\mathbf{x} = \{1, x_1, x_2, \ldots\}^T\)</span>.</p>
+<p>The model summary is presented in Table <span class="math inline">\(\ref{table:modelsummary}\)</span>: all covariates behave as we expected, with extremely small p-values, indicating that our selected covariates are statistically significant and likely contribute to explaining the variability in the response. Furthermore, the model produced an R-squared of 0.8531, indicating that 85.31% of the variations in the dependent variable can be explained our model. We further use more approaches to analyze and check our model.</p>
+</section>
+<section id="model-checking" class="level2">
+<h2 class="anchored" data-anchor-id="model-checking">Model Checking</h2>
+<ul>
+<li>We analyzed the residuals from the training set (previous 803 wards with full information on Leave votes) to ensure there were no obvious patterns or deviations.</li>
+<li>Residual plots were inspected for randomness, supporting the assumption of correctly specified mean-variance relationship.</li>
+</ul>
+</section>
+<section id="predictions" class="level2">
+<h2 class="anchored" data-anchor-id="predictions">Predictions</h2>
+<p>We use our model to predict the proportion of Leave votes in the remaining 267 wards. The mean standard error associated with the prediction is 0.00084, with a minimum of 0.00038 and a maximum of 0.00323. Generally, the majority of predicted values are kept within a reasonable range. According to the model, the overall predicted proportion of Leave votes in England is 52.32%, across all 1070 wards in the dataset. This is considerably close to the actual referendum results in England - 53.4%.</p>
+</section>
+</section>
+<section id="limitations-and-enhancements" class="level1">
+<h1>Limitations and Enhancements</h1>
+<p>In the process of checking model assumptions, we observed that not all selected covariates exhibit a clear linear relationship with the link function transformed response variable, i.e.&nbsp;the logit of proportion of Leave votes. This issue warrants further examination.</p>
+<p>Additionally, when examining the residuals from the training set predictions, we identified a few significant spikes in the residual plots. The model diagnostic plots further suggest that our model may have been influenced by some extreme values, suggesting further investigation. The model is also constrained by limited data. Previous studies show that economic factors such as GDP could have an impact on the result of the referendum.</p>
+<p>Finally, interactions between covariates could also be further explored.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="computing_for_practical_statistics_files/figure-html/combined_plot.png" class="img-fluid figure-img" style="width:66.7%"></p>
+<figcaption>Relationships between education level and proportion of leave votes in the ward.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="computing_for_practical_statistics_files/figure-html/ScreePlots-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:66.7%;height:66.7%"></p>
+<figcaption> Scree plots (Proportion of variance explained by each principal component).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="computing_for_practical_statistics_files/figure-html/ClusteringDendrogram-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:70.0%;height:70.0%"></p>
+<figcaption>Region cluster dendrogram.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="computing_for_practical_statistics_files/figure-html/Multicollinearity-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:66.7%;height:66.7%"></p>
+<figcaption> Heatmap of the absolute correlation matrix between covariates.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: right;">z value</th>
+<th style="text-align: right;">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.0749940</td>
+<td style="text-align: right;">0.0133656</td>
+<td style="text-align: right;">80.429723</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RegionCluster2</td>
+<td style="text-align: right;">-0.1008282</td>
+<td style="text-align: right;">0.0073477</td>
+<td style="text-align: right;">-13.722453</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RegionCluster3</td>
+<td style="text-align: right;">0.1597308</td>
+<td style="text-align: right;">0.0075777</td>
+<td style="text-align: right;">21.078982</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RegionCluster4</td>
+<td style="text-align: right;">0.0533320</td>
+<td style="text-align: right;">0.0068069</td>
+<td style="text-align: right;">7.834961</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC1_Ethnicity</td>
+<td style="text-align: right;">0.0129114</td>
+<td style="text-align: right;">0.0011512</td>
+<td style="text-align: right;">11.215833</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC2_Ethnicity</td>
+<td style="text-align: right;">-0.0650479</td>
+<td style="text-align: right;">0.0015344</td>
+<td style="text-align: right;">-42.394210</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC1_Housing</td>
+<td style="text-align: right;">-0.0528773</td>
+<td style="text-align: right;">0.0017378</td>
+<td style="text-align: right;">-30.427799</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC1_Education</td>
+<td style="text-align: right;">0.3179321</td>
+<td style="text-align: right;">0.0029733</td>
+<td style="text-align: right;">106.930228</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC1_Employment</td>
+<td style="text-align: right;">-0.0193578</td>
+<td style="text-align: right;">0.0027772</td>
+<td style="text-align: right;">-6.970349</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC1_Age</td>
+<td style="text-align: right;">-0.0507903</td>
+<td style="text-align: right;">0.0015851</td>
+<td style="text-align: right;">-32.042644</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC2_Age</td>
+<td style="text-align: right;">0.0922570</td>
+<td style="text-align: right;">0.0015332</td>
+<td style="text-align: right;">60.172573</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC1_SocialStatus</td>
+<td style="text-align: right;">0.1063456</td>
+<td style="text-align: right;">0.0021597</td>
+<td style="text-align: right;">49.240842</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC2_SocialStatus</td>
+<td style="text-align: right;">-0.0680723</td>
+<td style="text-align: right;">0.0020486</td>
+<td style="text-align: right;">-33.228442</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Density</td>
+<td style="text-align: right;">-0.0024351</td>
+<td style="text-align: right;">0.0000478</td>
+<td style="text-align: right;">-50.951320</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MultiDepriv</td>
+<td style="text-align: right;">-0.0351509</td>
+<td style="text-align: right;">0.0004685</td>
+<td style="text-align: right;">-75.030827</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
