@@ -29,6 +29,14 @@ body {
   opacity: 0.85;
 }
 
+.top-nav .active {
+  margin-left: 22px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: default;
+}
+
 .top-nav a:hover {
   text-decoration: underline;
 }
