@@ -199,3 +199,17 @@ section p {
 .content-card p:last-child {
   margin-bottom: 0;
 }
+
+/* Project spacing */
+.content-card h2 {
+  margin-top: 36px;
+}
+
+.content-card h2:first-of-type {
+  margin-top: 0;
+}
+
+.content-card ul {
+  margin-bottom: 36px;
+}
+
