@@ -14,6 +14,16 @@ body {
   line-height: 1.6;
 }
 
+.site-mark {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #f2f2f2;
+  opacity: 0.85;
+}
+
 .top-nav {
   position: absolute;
   top: 24px;
