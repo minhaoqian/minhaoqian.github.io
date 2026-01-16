@@ -18,10 +18,19 @@ body {
   position: absolute;
   top: 24px;
   left: 32px;
-  font-size: 18px;
-  font-weight: 600;
+
+  font-size: 17px;
+  font-weight: 500;
   color: #f2f2f2;
   opacity: 0.85;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-mark .divider {
+  opacity: 0.6;
 }
 
 .top-nav {
