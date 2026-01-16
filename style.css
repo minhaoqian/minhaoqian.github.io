@@ -221,4 +221,12 @@ section p {
   letter-spacing: 0.5px;
   font-weight: 500;
 }
+.project-summary {
+  margin-bottom: 6px;   /* reduce space */
+}
+
+.project-link {
+  margin-top: 0;
+  display: inline-block;
+}
 
