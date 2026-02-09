@@ -322,7 +322,7 @@ section p {
   color: rgba(255, 255, 255, 0.82);
   font-size: 1.02em;
   line-height: 1.65;
-  margin-bottom: 14px;
+  margin-bottom: 14px; 
 }
 
 .timeline-content a {
