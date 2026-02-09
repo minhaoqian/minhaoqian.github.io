@@ -283,3 +283,50 @@ section p {
   margin-bottom: 6px;
 }
 
+.timeline {
+  position: relative;
+  margin-top: 40px;
+  padding-left: 30px;
+  border-left: 2px solid #ddd;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -11px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border-radius: 50%;
+}
+
+.timeline-content h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.timeline-content img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.timeline-content p {
+  max-width: 520px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.timeline-content a {
+  text-decoration: none;
+  font-size: 0.95em;
+}
+
+
+
