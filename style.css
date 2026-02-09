@@ -319,8 +319,10 @@ section p {
 
 .timeline-content p {
   max-width: 520px;
-  color: #444;
-  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.02em;
+  line-height: 1.65;
+  margin-bottom: 14px;
 }
 
 .timeline-content a {
