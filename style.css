@@ -363,10 +363,11 @@ section p {
 /* Chinese line */
 .timeline-content .cn {
   display: block;
-  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-family: "LXGW WenKai", serif;
   font-size: 1.05em;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  line-height: 1.9;
+  margin-bottom: 8px;
 }
 
 /* English line */
