@@ -353,5 +353,32 @@ section p {
   transform: translateX(3px);
 }
 
+/* Archive – poetic text styling */
+
+.timeline-content p {
+  max-width: 520px;
+  margin-bottom: 14px;
+}
+
+/* Chinese line */
+.timeline-content .cn {
+  display: block;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* English line */
+.timeline-content .en {
+  display: block;
+  margin-top: 6px;
+  font-family: "Playfair Display", serif;
+  font-size: 0.95em;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 
 
