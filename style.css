@@ -368,7 +368,7 @@ section p {
 /* Chinese line */
 .timeline-content .cn {
   display: block;
-  font-family: "FangSong", "STFangsong", serif;
+  font-family: "Noto Serif SC", serif;
   font-size: 1.05em;
   letter-spacing: 0.06em;
   line-height: 1.85;
