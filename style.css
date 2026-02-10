@@ -412,6 +412,7 @@ section p {
   text-align: right;
 }
 
+/* Scoped styles for all archive year pages */
 .archive {
   background-color: #121212;
   color: #e6e6e6;
@@ -435,6 +436,19 @@ section p {
   font-style: italic;
   opacity: 0.9;
   margin-bottom: 2rem;
+}
+
+.archive .back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.archive .back-link:hover {
+  color: #ffffff;
 }
 
 .archive .month-list {
