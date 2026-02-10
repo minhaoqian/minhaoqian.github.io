@@ -289,6 +289,17 @@ section p {
   font-family: "Noto Serif SC", serif;
 }
 
+.timeline-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+
+  margin-bottom: 0.3rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
 .timeline {
   position: relative;
   margin-top: 40px;
