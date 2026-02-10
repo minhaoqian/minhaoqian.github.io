@@ -381,7 +381,7 @@ section p {
 }
 
 .photo-caption {
-  margin-top: -0.2rem;        /* 更贴近照片 */
+  margin-top: -1rem;        /* 更贴近照片 */
   font-size: 0.7rem;          /* 明显更小 */
   color: rgba(255, 255, 255, 0.45); /* 暗白，不刺眼 */
   letter-spacing: 0.04em;
