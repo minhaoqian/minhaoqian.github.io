@@ -284,9 +284,10 @@ section p {
 }
 
 .archive-intro {
-  font-size: 0.75rem;
+  font-size: 1rem;
   opacity: 0.7;
   margin-top: 0.3rem;
+  font-family: "Noto Serif SC", serif;
 }
 
 .timeline {
