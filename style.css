@@ -441,7 +441,7 @@ section p {
 .archive .back-link {
   display: inline-block;
   margin-bottom: 1rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: color 0.2s ease;
