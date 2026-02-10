@@ -283,6 +283,12 @@ section p {
   margin-bottom: 6px;
 }
 
+.archive-intro {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
+
 .timeline {
   position: relative;
   margin-top: 40px;
