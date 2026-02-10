@@ -381,11 +381,10 @@ section p {
 }
 
 .photo-caption {
-  margin-top: 0.4rem;
-  font-size: 0.85rem;
-  color: #777;
-  font-style: italic;
-  letter-spacing: 0.02em;
+  margin-top: 0.15rem;        /* 更贴近照片 */
+  font-size: 0.7rem;          /* 明显更小 */
+  color: rgba(255, 255, 255, 0.45); /* 暗白，不刺眼 */
+  letter-spacing: 0.04em;
 }
 
 
