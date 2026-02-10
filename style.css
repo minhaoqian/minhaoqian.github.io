@@ -310,11 +310,15 @@ section p {
   margin-bottom: 10px;
 }
 
+.photo-block {
+  display: inline-block;   /* shrink-wrap to image width */
+}
+
 .timeline-content img {
   width: 100%;
   max-width: 420px;
   border-radius: 6px;
-  margin: 10px 0;
+  margin: 10px 0 1px;
 }
 
 .timeline-content p {
@@ -381,8 +385,8 @@ section p {
 }
 
 .photo-caption {
-  margin-top: -1rem;        /* 更贴近照片 */
-  font-size: 0.7rem;          /* 明显更小 */
+  margin-top: -0.08rem;        /* 更贴近照片 */
+  font-size: 0.65rem;          /* 明显更小 */
   color: rgba(255, 255, 255, 0.45); /* 暗白，不刺眼 */
   letter-spacing: 0.04em;
   text-align: right;
