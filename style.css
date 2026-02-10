@@ -412,9 +412,7 @@ section p {
   text-align: right;
 }
 
-/* --- Archive 2025 page styles --- */
-
-body {
+.archive-2025 {
   background-color: #121212;
   color: #e6e6e6;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
@@ -424,7 +422,7 @@ body {
   margin: auto;
 }
 
-h1 {
+.archive-2025 h1 {
   font-family: "Playfair Display", serif;
   font-size: 2rem;
   font-weight: 500;
@@ -432,20 +430,20 @@ h1 {
   margin-bottom: 0.3rem;
 }
 
-.year-epigraph {
+.archive-2025 .year-epigraph {
   font-size: 0.95rem;
   font-style: italic;
   opacity: 0.9;
   margin-bottom: 2rem;
 }
 
-.month-list {
+.archive-2025 .month-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.month-list li {
+.archive-2025 .month-list li {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -453,7 +451,7 @@ h1 {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.month-list a {
+.archive-2025 .month-list a {
   font-family: "Playfair Display", serif;
   font-size: 1rem;
   font-weight: 500;
@@ -463,14 +461,11 @@ h1 {
   transition: color 0.2s ease;
 }
 
-.month-list a:hover {
+.archive-2025 .month-list a:hover {
   color: #ffffff;
 }
 
-.month-list span {
+.archive-2025 .month-list span {
   font-size: 0.75rem;
   opacity: 0.6;
 }
-
-
-
