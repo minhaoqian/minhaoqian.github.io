@@ -369,17 +369,17 @@ section p {
 .timeline-content .cn {
   display: block;
   font-family: "Noto Serif SC", serif;
-  font-size: 1.05em;
+  font-size: 0.7em;
   letter-spacing: 0.06em;
   line-height: 1.85;
-  margin-bottom:0.2rem;
+  margin-bottom:-0.2rem;
 }
 
 /* English line */
 .timeline-content .en {
   display: block;
   font-family: "Playfair Display", serif;
-  font-size: 0.95em;
+  font-size: 0.7em;
   font-style: italic;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.7);
