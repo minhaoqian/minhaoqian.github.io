@@ -412,7 +412,7 @@ section p {
   text-align: right;
 }
 
-.archive-2025 {
+.archive {
   background-color: #121212;
   color: #e6e6e6;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
@@ -422,7 +422,7 @@ section p {
   margin: auto;
 }
 
-.archive-2025 h1 {
+.archive h1 {
   font-family: "Playfair Display", serif;
   font-size: 2rem;
   font-weight: 500;
@@ -430,20 +430,20 @@ section p {
   margin-bottom: 0.3rem;
 }
 
-.archive-2025 .year-epigraph {
+.archive .year-epigraph {
   font-size: 0.95rem;
   font-style: italic;
   opacity: 0.9;
   margin-bottom: 2rem;
 }
 
-.archive-2025 .month-list {
+.archive .month-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.archive-2025 .month-list li {
+.archive .month-list li {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -451,7 +451,7 @@ section p {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.archive-2025 .month-list a {
+.archive .month-list a {
   font-family: "Playfair Display", serif;
   font-size: 1rem;
   font-weight: 500;
@@ -461,11 +461,11 @@ section p {
   transition: color 0.2s ease;
 }
 
-.archive-2025 .month-list a:hover {
+.archive .month-list a:hover {
   color: #ffffff;
 }
 
-.archive-2025 .month-list span {
+.archive .month-list span {
   font-size: 0.75rem;
   opacity: 0.6;
 }
