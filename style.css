@@ -483,3 +483,11 @@ section p {
   font-size: 0.75rem;
   opacity: 0.6;
 }
+
+.archive .month-instruction {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
