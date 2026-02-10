@@ -311,7 +311,8 @@ section p {
 }
 
 .photo-block {
-  display: inline-block;   /* shrink-wrap to image width */
+  display: inline-block;
+  margin-bottom: 0.6rem;/* shrink-wrap to image width */
 }
 
 .timeline-content img {
@@ -382,6 +383,7 @@ section p {
   font-style: italic;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.7);
+  margin-bottom:0.2rem;
 }
 
 .photo-caption {
@@ -389,6 +391,7 @@ section p {
   font-size: 0.65rem;          /* 明显更小 */
   color: rgba(255, 255, 255, 0.45); /* 暗白，不刺眼 */
   letter-spacing: 0.04em;
+  opacity: 0.75;
   text-align: right;
 }
 
