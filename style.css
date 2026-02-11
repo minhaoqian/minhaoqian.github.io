@@ -557,6 +557,7 @@ section p {
   flex-direction: column;
   justify-content: flex-start;
   max-width: 420px;
+  text-align: left;   /* 🔥 统一左对齐 */
 }
 
 /* Title */
@@ -566,25 +567,17 @@ section p {
   font-size: 1rem;
   margin-bottom: 0.4rem;
   letter-spacing: 0.04em;
+  text-align: left;   /* 🔥 永远左对齐 */
 }
 
-/* Description (always left aligned) */
+/* Description */
 .archive .caption .photo-desc {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.6;
   letter-spacing: 0.03em;
-  text-align: left;
-}
-
-/* Title alignment follows image side */
-.archive .photo-block.left .photo-title {
-  text-align: left;
-}
-
-.archive .photo-block.right .photo-title {
-  text-align: right;
+  text-align: left;   /* 🔥 永远左对齐 */
 }
 
 /* -------- Responsive (Mobile) -------- */
@@ -600,12 +593,4 @@ section p {
   .archive .caption {
     max-width: 100%;
   }
-
-  /* On mobile everything left aligned for readability */
-  .archive .photo-title,
-  .archive .photo-desc {
-    text-align: left !important;
-  }
-}
-
 }
