@@ -507,17 +507,18 @@ section p {
 }
 
 /* ----- Month Page Specific (Scoped to .archive) ----- */
+
 .archive .month-epigraph {
   font-family: "Noto Serif SC", serif;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.08em;
   line-height: 1.8;
-
   opacity: 0.9;
   margin-bottom: 2.2rem;
 }
 
+/* Photo container */
 .archive .month-photos {
   display: flex;
   flex-direction: column;
@@ -555,7 +556,7 @@ section p {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 420px; /* same visual width as image */
+  max-width: 420px;
 }
 
 /* Title */
@@ -567,21 +568,22 @@ section p {
   letter-spacing: 0.04em;
 }
 
-/* Sub / Description */
+/* Description (always left aligned) */
 .archive .caption .photo-desc {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.6;
   letter-spacing: 0.03em;
-}
-
-/* Align text depending on side */
-.archive .photo-block.left .caption {
   text-align: left;
 }
 
-.archive .photo-block.right .caption {
+/* Title alignment follows image side */
+.archive .photo-block.left .photo-title {
+  text-align: left;
+}
+
+.archive .photo-block.right .photo-title {
   text-align: right;
 }
 
@@ -593,14 +595,17 @@ section p {
     flex-direction: column !important;
     align-items: center;
     gap: 1rem;
-    text-align: center;
   }
 
   .archive .caption {
     max-width: 100%;
   }
 
-  .archive .caption .photo-desc {
-    text-align: center;
+  /* On mobile everything left aligned for readability */
+  .archive .photo-title,
+  .archive .photo-desc {
+    text-align: left !important;
   }
+}
+
 }
