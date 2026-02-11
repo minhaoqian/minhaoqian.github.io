@@ -502,6 +502,16 @@ section p {
 }
 
 /* ----- Month Page Specific (Scoped to .archive) ----- */
+.archive .month-epigraph {
+  font-family: "Noto Serif SC", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+
+  opacity: 0.9;
+  margin-bottom: 2.2rem;
+}
 
 .archive .month-photos {
   display: flex;
