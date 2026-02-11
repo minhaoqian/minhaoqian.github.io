@@ -496,18 +496,18 @@ section p {
 .archive .month-photos {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3rem;
   margin-top: 2rem;
 }
 
-/* Each photo + caption block */
+/* Each photo block */
 .archive .photo-block {
   display: flex;
-  align-items: flex-start;   /* IMPORTANT: prevents weird vertical shift */
-  gap: 1.5rem;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
-/* Alternate left/right */
+/* Alternate layout */
 .archive .photo-block.left {
   flex-direction: row;
 }
@@ -516,45 +516,64 @@ section p {
   flex-direction: row-reverse;
 }
 
-/* Images */
+/* Image */
 .archive .photo-block img {
   width: 100%;
   max-width: 420px;
   border-radius: 6px;
   object-fit: cover;
-  display: block; /* prevents baseline shifting */
+  display: block;
 }
 
-/* Month captions only */
-.archive .month-caption {
+/* Caption container */
+.archive .caption {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  justify-content: flex-start;
+  max-width: 420px; /* same visual width as image */
 }
 
 /* Title */
-.archive .month-caption .photo-title {
+.archive .caption .photo-title {
   font-weight: 500;
   font-size: 1rem;
   margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
 }
 
-/* Description */
-.archive .month-caption .photo-desc {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.5;
+/* Sub / Description */
+.archive .caption .photo-desc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  letter-spacing: 0.03em;
 }
 
-/* Responsive */
+/* Align text depending on side */
+.archive .photo-block.left .caption {
+  text-align: left;
+}
+
+.archive .photo-block.right .caption {
+  text-align: right;
+}
+
+/* -------- Responsive (Mobile) -------- */
+
 @media screen and (max-width: 768px) {
+
   .archive .photo-block {
     flex-direction: column !important;
     align-items: center;
+    gap: 1rem;
     text-align: center;
   }
 
-  .archive .month-caption {
+  .archive .caption {
     max-width: 100%;
+  }
+
+  .archive .caption .photo-desc {
+    text-align: center;
   }
 }
