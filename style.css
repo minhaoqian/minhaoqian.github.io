@@ -491,9 +491,9 @@ section p {
   font-style: italic;
 }
 
-/* ----- Month Page Specific ----- */
+/* ----- Month Page Specific (Scoped to .archive) ----- */
 
-.month-photos {
+.archive .month-photos {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -501,57 +501,60 @@ section p {
 }
 
 /* Each photo + caption block */
-.photo-block {
+.archive .photo-block {
   display: flex;
-  align-items: center;
+  align-items: flex-start;   /* IMPORTANT: prevents weird vertical shift */
   gap: 1.5rem;
 }
 
 /* Alternate left/right */
-.photo-block.left {
+.archive .photo-block.left {
   flex-direction: row;
 }
 
-.photo-block.right {
+.archive .photo-block.right {
   flex-direction: row-reverse;
 }
 
 /* Images */
-.photo-block img {
+.archive .photo-block img {
   width: 100%;
   max-width: 420px;
   border-radius: 6px;
   object-fit: cover;
+  display: block; /* prevents baseline shifting */
 }
 
-/* Captions specific for month pages */
-.month-caption {
+/* Month captions only */
+.archive .month-caption {
   display: flex;
   flex-direction: column;
   max-width: 400px;
 }
 
-.month-caption .photo-title {
+/* Title */
+.archive .month-caption .photo-title {
   font-weight: 500;
-  font-size: 1.05em;
-  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
 }
 
-.month-caption .photo-desc {
-  font-size: 0.85em;
+/* Description */
+.archive .month-caption .photo-desc {
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* Responsive for mobile */
+/* Responsive */
 @media screen and (max-width: 768px) {
-  .photo-block {
+  .archive .photo-block {
     flex-direction: column !important;
     align-items: center;
     text-align: center;
   }
 
-  .month-caption {
+  .archive .month-caption {
     max-width: 100%;
   }
 }
