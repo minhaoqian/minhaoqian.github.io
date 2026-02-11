@@ -524,20 +524,20 @@ section p {
   object-fit: cover;
 }
 
-/* Captions */
-.caption {
+/* Captions specific for month pages */
+.month-caption {
   display: flex;
   flex-direction: column;
   max-width: 400px;
 }
 
-.caption .photo-title {
+.month-caption .photo-title {
   font-weight: 500;
   font-size: 1.05em;
   margin-bottom: 0.3rem;
 }
 
-.caption .photo-desc {
+.month-caption .photo-desc {
   font-size: 0.85em;
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.4;
@@ -551,8 +551,7 @@ section p {
     text-align: center;
   }
 
-  .caption {
+  .month-caption {
     max-width: 100%;
   }
 }
-
