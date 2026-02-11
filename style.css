@@ -491,3 +491,68 @@ section p {
   font-style: italic;
 }
 
+/* ----- Month Page Specific ----- */
+
+.month-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+/* Each photo + caption block */
+.photo-block {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Alternate left/right */
+.photo-block.left {
+  flex-direction: row;
+}
+
+.photo-block.right {
+  flex-direction: row-reverse;
+}
+
+/* Images */
+.photo-block img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Captions */
+.caption {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.caption .photo-title {
+  font-weight: 500;
+  font-size: 1.05em;
+  margin-bottom: 0.3rem;
+}
+
+.caption .photo-desc {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+}
+
+/* Responsive for mobile */
+@media screen and (max-width: 768px) {
+  .photo-block {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+
+  .caption {
+    max-width: 100%;
+  }
+}
+
