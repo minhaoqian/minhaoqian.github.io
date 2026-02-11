@@ -560,14 +560,16 @@ section p {
 
 /* Title */
 .archive .caption .photo-title {
+  font-family: "Noto Serif SC", serif;
   font-weight: 500;
   font-size: 1rem;
   margin-bottom: 0.4rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 /* Sub / Description */
 .archive .caption .photo-desc {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.6;
