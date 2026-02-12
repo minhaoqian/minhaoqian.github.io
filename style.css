@@ -625,5 +625,26 @@ section p {
   transform: translateX(6px);
 }
 
+/* -------- Mobile Arrow Enhancement -------- */
+@media screen and (max-width: 768px) {
+
+  .archive .month-nav {
+    margin-top: 3rem;
+  }
+
+  .archive .month-nav a {
+    font-size: 2.8rem;   /* 放大 */
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .archive .month-nav .prev {
+    padding-left: 0.5rem;
+  }
+
+  .archive .month-nav .next {
+    padding-right: 0.5rem;
+  }
+}
 
 
