@@ -594,3 +594,23 @@ section p {
     max-width: 100%;
   }
 }
+
+.archive .month-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  font-size: 1.2rem;
+  opacity: 0.5;
+}
+
+.archive .month-nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.archive .month-nav a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
