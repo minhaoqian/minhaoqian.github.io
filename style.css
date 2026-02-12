@@ -598,20 +598,31 @@ section p {
 .archive .month-nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 4rem;
-  font-size: 1.2rem;
-  opacity: 0.5;
 }
 
 .archive .month-nav a {
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;              /* slightly larger */
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.28);
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  line-height: 1;
 }
 
+/* hover effect */
 .archive .month-nav a:hover {
-  opacity: 1;
-  transform: translateY(-2px);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.archive .month-nav .prev:hover {
+  transform: translateX(-6px);
+}
+
+.archive .month-nav .next:hover {
+  transform: translateX(6px);
 }
 
 
