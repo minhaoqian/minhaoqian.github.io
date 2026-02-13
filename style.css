@@ -516,6 +516,7 @@ section p {
   line-height: 1.8;
   opacity: 0.9;
   margin-bottom: 2.2rem;
+  display: block;
 }
 
 /* Photo container */
