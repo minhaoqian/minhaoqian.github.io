@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>February 2026</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
 
+<body>
+
+  <main class="page-container">
+
+    <div class="site-mark">
+      Neil. Q
+    </div>
+
+    <nav class="top-nav">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/projects/">Projects</a>
+      <a href="/experience/">Experience</a>
+      <a href="/football/">Football</a>
+      <span class="active">Archive</span>
+    </nav>
+
+    <div class="archive">
+
+      <a href="/archive/2026/" class="back-link">&larr; Back to 2026</a>
+
+      <h1>February 2026</h1>
+      <p class="month-epigraph">
+        未完待续
+      </p>
+
+      <div class="month-photos">
+
+        <div class="photo-block left">
+          <img src="/archive/2026/02/262_1.jpg" alt="Winter walk">
+          <div class="caption">
+            <span class="photo-title">校队比赛日记</span>
+            <span class="photo-desc">
+             出战四场比赛，三胜一平，势头正盛。在杯赛闯入半决赛后，久违的全队赛后 pub 环节终于回归，大家围在一起庆祝。面对过去两年从未战胜过的对手，我们在最后一刻完成了绝杀。即使在最艰难的时刻，放弃从来都不是一种选择。
+            </span>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="month-nav">
+        <a href="/archive/2026/01/" class="prev">&#8249;</a>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
