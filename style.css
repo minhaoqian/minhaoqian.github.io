@@ -412,12 +412,6 @@ section p {
   text-align: right;
 }
 
-.photo-subtitle {
-    display: block;
-    font-size: 14px;
-    opacity: 0.8;
-    margin-top: 4px;
-}
 
 /* Scoped styles for all archive year pages */
 .archive {
@@ -571,14 +565,20 @@ section p {
   text-align: left;   /* 🔥 统一左对齐 */
 }
 
-/* Title */
 .archive .caption .photo-title {
   font-family: "Noto Serif SC", serif;
   font-weight: 500;
   font-size: 1rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   letter-spacing: 0.04em;
-  text-align: left;   /* 🔥 永远左对齐 */
+  text-align: left;
+  display: block;
+}
+
+.archive .caption .photo-subtitle {
+  display: block;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 /* Description */
