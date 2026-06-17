@@ -576,9 +576,11 @@ section p {
 }
 
 .archive .caption .photo-subtitle {
+  font-family: "Noto Serif SC", serif;
   display: block;
   font-size: 14px;
   opacity: 0.8;
+  margin-bottom: 0.3rem;
 }
 
 /* Description */
