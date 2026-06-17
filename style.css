@@ -412,6 +412,13 @@ section p {
   text-align: right;
 }
 
+.photo-subtitle {
+    display: block;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
 /* Scoped styles for all archive year pages */
 .archive {
   background-color: #121212;
