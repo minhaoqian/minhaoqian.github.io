@@ -660,4 +660,61 @@ section p {
   }
 }
 
+/* ---------- Travel ---------- */
+
+.travel-list{
+    margin-top:48px;
+}
+
+.travel-card{
+    max-width:520px;
+}
+
+.travel-card h2{
+    font-family:"Playfair Display",serif;
+    font-size:1.45rem;
+    font-weight:500;
+    letter-spacing:0.08em;
+    margin:14px 0 8px;
+    color:rgba(255,255,255,.92);
+}
+
+.travel-meta{
+    font-family:"Playfair Display",serif;
+    font-size:.82rem;
+    font-style:italic;
+    color:rgba(255,255,255,.58);
+    margin-bottom:14px;
+}
+
+.travel-summary{
+    max-width:520px;
+    font-size:.98rem;
+    line-height:1.75;
+    color:rgba(255,255,255,.82);
+    margin-bottom:18px;
+}
+
+.travel-card a{
+    display:inline-block;
+
+    font-family:"Playfair Display",serif;
+    font-size:.9rem;
+    font-weight:500;
+
+    color:rgba(255,255,255,.7);
+
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.35);
+
+    padding-bottom:2px;
+
+    transition:.2s;
+}
+
+.travel-card a:hover{
+    color:#fff;
+    border-bottom-color:rgba(255,255,255,.9);
+}
+
 
