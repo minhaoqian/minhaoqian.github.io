@@ -690,6 +690,16 @@ section p {
   text-align: justify;
 }
 
+.travel-drop {
+  display: block;
+
+  font-size: 1.18rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,.95);
+
+  font-family: "Noto Serif SC", serif;
+}
+
 .travel-card h2{
     font-family:"Playfair Display",serif;
     font-size:1.45rem;
