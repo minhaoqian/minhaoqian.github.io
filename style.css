@@ -670,6 +670,26 @@ section p {
     max-width:520px;
 }
 
+/* ---------- Travel Intro ---------- */
+
+.travel-intro {
+  max-width: 760px;
+
+  margin-top: 0.8rem;
+  margin-bottom: 3.2rem;
+
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.03rem;
+  font-weight: 400;
+
+  line-height: 2.1;
+  letter-spacing: 0.06em;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  text-align: justify;
+}
+
 .travel-card h2{
     font-family:"Playfair Display",serif;
     font-size:1.45rem;
