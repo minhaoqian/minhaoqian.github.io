@@ -950,3 +950,42 @@ font-size:2.3rem;
 }
 
 }
+
+.route-map {
+  max-width: 340px;
+  margin: 3rem 0;
+}
+
+.route-map svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.route-line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.2;
+}
+
+.route-dashed {
+  stroke-dasharray: 5 5;
+  opacity: 0.75;
+}
+
+.route-dot {
+  fill: rgba(255, 255, 255, 0.86);
+}
+
+.route-text {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  fill: rgba(255, 255, 255, 0.86);
+}
+
+.route-sub {
+  font-family: "Playfair Display", serif;
+  font-size: 13px;
+  font-style: italic;
+  fill: rgba(255, 255, 255, 0.55);
+}
