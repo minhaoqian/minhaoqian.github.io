@@ -60,27 +60,33 @@
         <div class="route-map">
           <p class="route-title">Route</p>
 
-          <svg viewBox="0 0 300 430" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg">
 
-            <path class="route-line" d="M80 40 L80 105 L205 155 L205 220 L95 280 L95 340 L80 395" />
+  <path class="route-line"
+        d="M70 70 C150 42, 225 40, 275 75
+           C260 120, 235 155, 215 190
+           C185 235, 145 260, 105 285" />
 
-            <circle class="route-dot" cx="80" cy="40" r="5" />
-            <circle class="route-dot" cx="80" cy="105" r="5" />
-            <circle class="route-dot" cx="205" cy="155" r="5" />
-            <circle class="route-dot" cx="205" cy="220" r="5" />
-            <circle class="route-dot" cx="95" cy="280" r="5" />
-            <circle class="route-dot" cx="95" cy="340" r="5" />
-            <circle class="route-dot" cx="80" cy="395" r="5" />
+  <path class="route-line route-return"
+        d="M105 285 C125 250, 170 220, 215 190
+           C160 155, 105 110, 70 70" />
 
-            <text class="route-text" x="98" y="45">London</text>
-            <text class="route-text" x="98" y="110">Paris</text>
-            <text class="route-text" x="220" y="160">Amsterdam</text>
-            <text class="route-text" x="220" y="225">Brussels</text>
-            <text class="route-text" x="113" y="285">Paris</text>
-            <text class="route-text" x="113" y="345">Mont Saint-Michel</text>
-            <text class="route-text" x="98" y="400">London</text>
+  <circle class="route-dot" cx="70" cy="70" r="5" />
+  <circle class="route-dot" cx="275" cy="75" r="5" />
+  <circle class="route-dot" cx="215" cy="190" r="5" />
+  <circle class="route-dot" cx="105" cy="285" r="5" />
 
-          </svg>
+  <text class="route-text" x="28" y="65">London</text>
+  <text class="route-text" x="232" y="64">Amsterdam</text>
+  <text class="route-text" x="228" y="194">Brussels</text>
+  <text class="route-text" x="116" y="290">Paris</text>
+
+  <circle class="route-dot route-small-dot" cx="42" cy="305" r="4" />
+  <path class="route-line route-msm"
+        d="M105 285 C82 292, 62 300, 42 305" />
+  <text class="route-text" x="58" y="330">Mont Saint-Michel</text>
+
+</svg>
         </div>
 
       </div>
