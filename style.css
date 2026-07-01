@@ -670,83 +670,93 @@ section p {
     max-width:520px;
 }
 
-/* ---------- Travel Intro ---------- */
+/* ---------- Travel ---------- */
 
 .travel-intro {
   max-width: 760px;
-
   margin-top: 0.8rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 2.6rem;
 
   font-family: "Noto Serif SC", serif;
   font-size: 1.03rem;
   font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.06em;
 
+  color: rgba(255, 255, 255, 0.82);
+  text-align: justify;
+}
+
+.travel-divider {
+  width: 100%;
+  max-width: 760px;
+  height: 1px;
+
+  margin: 0 0 3.2rem;
+
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.travel-list {
+  margin-top: 0;
+}
+
+.travel-card {
+  max-width: 560px;
+}
+
+.travel-card h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 14px 0 8px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.travel-meta {
+  font-family: "Playfair Display", serif;
+  font-size: .82rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, .58);
+  margin-bottom: 14px;
+}
+
+.travel-summary {
+  max-width: 560px;
+
+  font-family: "Noto Serif SC", serif;
+  font-size: 1.03rem;
+  font-weight: 400;
   line-height: 2;
   letter-spacing: 0.06em;
 
   color: rgba(255, 255, 255, 0.82);
 
+  margin-bottom: 18px;
   text-align: justify;
 }
 
-.travel-drop {
-  display: block;
+.travel-card a {
+  display: inline-block;
 
-  font-size: 1.18rem;
-  line-height: 1.5;
-  color: rgba(255,255,255,.95);
+  font-family: "Playfair Display", serif;
+  font-size: .9rem;
+  font-weight: 500;
 
-  font-family: "Noto Serif SC", serif;
+  color: rgba(255, 255, 255, .7);
+
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .35);
+
+  padding-bottom: 2px;
+
+  transition: .2s;
 }
 
-.travel-card h2{
-    font-family:"Playfair Display",serif;
-    font-size:1.45rem;
-    font-weight:500;
-    letter-spacing:0.08em;
-    margin:14px 0 8px;
-    color:rgba(255,255,255,.92);
-}
-
-.travel-meta{
-    font-family:"Playfair Display",serif;
-    font-size:.82rem;
-    font-style:italic;
-    color:rgba(255,255,255,.58);
-    margin-bottom:14px;
-}
-
-.travel-summary{
- display: block;
-
-  font-size: 1.18rem;
-  line-height: 1.9;
-  color: rgba(255,255,255,.95);
-
-  font-family: "Noto Serif SC", serif;
-}
-
-.travel-card a{
-    display:inline-block;
-
-    font-family:"Playfair Display",serif;
-    font-size:.9rem;
-    font-weight:500;
-
-    color:rgba(255,255,255,.7);
-
-    text-decoration:none;
-    border-bottom:1px solid rgba(255,255,255,.35);
-
-    padding-bottom:2px;
-
-    transition:.2s;
-}
-
-.travel-card a:hover{
-    color:#fff;
-    border-bottom-color:rgba(255,255,255,.9);
+.travel-card a:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, .9);
 }
 
 /* ==========================================================
