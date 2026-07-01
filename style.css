@@ -682,7 +682,7 @@ section p {
   font-size: 1.03rem;
   font-weight: 400;
 
-  line-height: 2.1;
+  line-height: 2;
   letter-spacing: 0.06em;
 
   color: rgba(255, 255, 255, 0.82);
@@ -694,7 +694,7 @@ section p {
   display: block;
 
   font-size: 1.18rem;
-  line-height: 1.9;
+  line-height: 1.5;
   color: rgba(255,255,255,.95);
 
   font-family: "Noto Serif SC", serif;
