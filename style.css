@@ -964,14 +964,60 @@ font-size:2.3rem;
   max-width: 560px;
 }
 
+.route-map {
+  width: 300px;
+  margin-top: 0.8rem;
+}
+
+.route-title {
+  font-family: "Playfair Display", serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 16px;
+}
+
+.route-map svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.route-coast {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.route-water {
+  font-family: "Playfair Display", serif;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.18em;
+  fill: rgba(156, 201, 255, 0.35);
+}
+
 .rail-track,
 .rail-branch {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.46);
+  stroke: rgba(255, 255, 255, 0.58);
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 1 9;
+  stroke-dasharray: 1 8;
+}
+
+.rail-return {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.34);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 5 5;
 }
 
 .rail-branch {
@@ -980,7 +1026,7 @@ font-size:2.3rem;
 
 .route-dot {
   fill: #0b0d10;
-  stroke: rgba(255, 255, 255, 0.82);
+  stroke: rgba(255, 255, 255, 0.86);
   stroke-width: 1.5;
 }
 
@@ -988,12 +1034,12 @@ font-size:2.3rem;
   font-family: "Playfair Display", serif;
   font-size: 15px;
   letter-spacing: 0.04em;
-  fill: rgba(255, 255, 255, 0.76);
+  fill: rgba(255, 255, 255, 0.78);
 }
 
 .route-sub {
   font-family: "Playfair Display", serif;
-  font-size: 12px;
+  font-size: 11px;
   font-style: italic;
   letter-spacing: 0.04em;
   fill: rgba(255, 255, 255, 0.45);
