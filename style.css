@@ -989,3 +989,21 @@ font-size:2.3rem;
   font-style: italic;
   fill: rgba(255, 255, 255, 0.55);
 }
+
+.travel-trip{
+
+    display:grid;
+
+    grid-template-columns:1fr 280px;
+
+    gap:70px;
+
+    align-items:start;
+
+}
+
+.travel-trip-text{
+
+    max-width:560px;
+
+}
