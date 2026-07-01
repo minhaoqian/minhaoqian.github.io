@@ -701,10 +701,6 @@ section p {
   margin-top: 0;
 }
 
-.travel-card {
-  max-width: 560px;
-}
-
 .travel-card h2 {
   font-family: "Playfair Display", serif;
   font-size: 1.45rem;
@@ -951,59 +947,94 @@ font-size:2.3rem;
 
 }
 
+/* ---------- Travel Trip Route ---------- */
+
+.travel-card {
+  max-width: 900px;
+}
+
+.travel-trip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 70px;
+  align-items: start;
+}
+
+.travel-trip-text {
+  max-width: 560px;
+}
+
 .route-map {
-  max-width: 340px;
-  margin: 3rem 0;
+  width: 300px;
+  margin-top: 0.8rem;
+}
+
+.route-title {
+  font-family: "Playfair Display", serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 18px;
 }
 
 .route-map svg {
   width: 100%;
   height: auto;
+  display: block;
   overflow: visible;
 }
 
 .route-line {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.55);
-  stroke-width: 1.2;
+  stroke: rgba(255, 255, 255, 0.42);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.route-dashed {
-  stroke-dasharray: 5 5;
+.route-return {
+  stroke-dasharray: 4 5;
+  opacity: 0.55;
+}
+
+.route-msm {
   opacity: 0.75;
 }
 
 .route-dot {
-  fill: rgba(255, 255, 255, 0.86);
+  fill: #0b0d10;
+  stroke: rgba(255, 255, 255, 0.78);
+  stroke-width: 1.4;
+}
+
+.route-small-dot {
+  opacity: 0.85;
 }
 
 .route-text {
   font-family: "Playfair Display", serif;
-  font-size: 18px;
-  fill: rgba(255, 255, 255, 0.86);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  fill: rgba(255, 255, 255, 0.74);
 }
 
 .route-sub {
   font-family: "Playfair Display", serif;
-  font-size: 13px;
+  font-size: 12px;
   font-style: italic;
-  fill: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.04em;
+  fill: rgba(255, 255, 255, 0.45);
 }
 
-.travel-trip{
+@media screen and (max-width: 768px) {
+  .travel-trip {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 
-    display:grid;
-
-    grid-template-columns:1fr 280px;
-
-    gap:70px;
-
-    align-items:start;
-
-}
-
-.travel-trip-text{
-
-    max-width:560px;
-
+  .route-map {
+    width: 260px;
+    margin-top: 1.5rem;
+  }
 }
