@@ -975,7 +975,7 @@ font-size:2.3rem;
   font-style: italic;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .route-map svg {
@@ -986,24 +986,26 @@ font-size:2.3rem;
 }
 
 .route-coast {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.16);
-  stroke-width: 1;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1.1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .route-water {
   font-family: "Playfair Display", serif;
-  font-size: 11px;
+  font-size: 10px;
   font-style: italic;
   letter-spacing: 0.18em;
-  fill: rgba(156, 201, 255, 0.35);
+  fill: rgba(156, 201, 255, 0.38);
 }
 
-.rail-track,
-.rail-branch {
-  fill: none;
+.water-wave {
+  stroke: rgba(156, 201, 255, 0.32);
+  stroke-width: 1;
+}
+
+.rail-track {
   stroke: rgba(255, 255, 255, 0.58);
   stroke-width: 5;
   stroke-linecap: round;
@@ -1012,16 +1014,11 @@ font-size:2.3rem;
 }
 
 .rail-return {
-  fill: none;
   stroke: rgba(255, 255, 255, 0.34);
   stroke-width: 1.4;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 5 5;
-}
-
-.rail-branch {
-  opacity: 0.75;
 }
 
 .route-dot {
@@ -1035,14 +1032,6 @@ font-size:2.3rem;
   font-size: 15px;
   letter-spacing: 0.04em;
   fill: rgba(255, 255, 255, 0.78);
-}
-
-.route-sub {
-  font-family: "Playfair Display", serif;
-  font-size: 11px;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  fill: rgba(255, 255, 255, 0.45);
 }
 
 @media screen and (max-width: 768px) {
