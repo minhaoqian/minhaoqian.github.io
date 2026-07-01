@@ -58,41 +58,57 @@
         </div>
 
         <div class="route-map">
-          <p class="route-title">Route</p>
+  <p class="route-title">Route</p>
 
-          <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg">
 
-  <!-- main railway shadow -->
-  <path class="rail-track"
-        d="M70 70 
-           C140 45, 225 45, 275 80
-           C260 125, 235 160, 215 190
-           C185 235, 145 260, 110 285
-           C80 310, 75 345, 70 330" />
+    <!-- Coastline / Channel hint -->
+    <path class="route-coast uk"
+      d="M32 88 C58 70, 86 78, 105 98 C85 112, 62 115, 38 104" />
 
-  <!-- route nodes -->
-  <circle class="route-dot" cx="70" cy="70" r="5" />
-  <circle class="route-dot" cx="275" cy="80" r="5" />
-  <circle class="route-dot" cx="215" cy="190" r="5" />
-  <circle class="route-dot" cx="110" cy="285" r="5" />
-  <circle class="route-dot" cx="42" cy="305" r="5" />
+    <path class="route-coast eu"
+      d="M135 95 C170 80, 220 72, 290 78
+         C275 128, 258 170, 235 205
+         C205 250, 160 275, 92 298" />
 
-  <!-- Mont Saint-Michel branch -->
-  <path class="rail-branch"
-        d="M110 285 C85 292, 62 300, 42 305" />
+    <text class="route-water" x="115" y="135">English Channel</text>
 
-  <!-- city labels -->
-  <text class="route-text" x="28" y="65">London</text>
-  <text class="route-text" x="232" y="70">Amsterdam</text>
-  <text class="route-text" x="228" y="194">Brussels</text>
-  <text class="route-text" x="122" y="290">Paris</text>
-  <text class="route-text" x="58" y="330">Mont Saint-Michel</text>
+    <!-- Main railway -->
+    <path class="rail-track"
+      d="M72 88
+         C120 60, 215 58, 282 78
+         C265 125, 245 158, 224 190
+         C197 231, 162 258, 116 282" />
 
-  <text class="route-sub" x="38" y="90">Start / Return</text>
+    <!-- Eurostar return -->
+    <path class="rail-return"
+      d="M224 190
+         C174 168, 115 128, 72 88" />
 
-</svg>
-        </div>
+    <!-- Mont Saint-Michel branch -->
+    <path class="rail-branch"
+      d="M116 282
+         C88 290, 62 298, 42 305" />
 
+    <!-- Nodes -->
+    <circle class="route-dot" cx="72" cy="88" r="5" />
+    <circle class="route-dot" cx="282" cy="78" r="5" />
+    <circle class="route-dot" cx="224" cy="190" r="5" />
+    <circle class="route-dot" cx="116" cy="282" r="5" />
+    <circle class="route-dot" cx="42" cy="305" r="5" />
+
+    <!-- Labels -->
+    <text class="route-text" x="28" y="82">London</text>
+    <text class="route-sub" x="30" y="102">Start / Return</text>
+
+    <text class="route-text" x="230" y="65">Amsterdam</text>
+    <text class="route-text" x="238" y="194">Brussels</text>
+    <text class="route-text" x="128" y="287">Paris</text>
+    <text class="route-text" x="58" y="330">Mont Saint-Michel</text>
+
+  </svg>
+</div>
+        
       </div>
 
     </article>
