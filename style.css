@@ -950,13 +950,13 @@ font-size:2.3rem;
 /* ---------- Travel Trip Route ---------- */
 
 .travel-card {
-  max-width: 900px;
+  max-width: 980px;
 }
 
 .travel-trip {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 70px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 64px;
   align-items: start;
 }
 
@@ -965,73 +965,48 @@ font-size:2.3rem;
 }
 
 .route-map {
-  width: 300px;
-  margin-top: 0.8rem;
+  width: 360px;
+  margin-top: 0.2rem;
+  position: relative;
 }
 
-.route-title {
-  font-family: "Playfair Display", serif;
-  font-size: 0.78rem;
-  font-style: italic;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 14px;
-}
-
-.route-map svg {
+.route-map img {
   width: 100%;
-  height: auto;
   display: block;
-  overflow: visible;
+
+  opacity: 0.92;
+
+  filter: brightness(0.96) contrast(1.04) saturate(0.9);
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 62%,
+    rgba(0, 0, 0, 0.82) 76%,
+    rgba(0, 0, 0, 0.42) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 62%,
+    rgba(0, 0, 0, 0.82) 76%,
+    rgba(0, 0, 0, 0.42) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
-.route-coast {
-  stroke: rgba(255, 255, 255, 0.18);
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+.route-map::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  pointer-events: none;
 
-.route-water {
-  font-family: "Playfair Display", serif;
-  font-size: 10px;
-  font-style: italic;
-  letter-spacing: 0.18em;
-  fill: rgba(156, 201, 255, 0.38);
-}
-
-.water-wave {
-  stroke: rgba(156, 201, 255, 0.32);
-  stroke-width: 1;
-}
-
-.rail-track {
-  stroke: rgba(255, 255, 255, 0.58);
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1 8;
-}
-
-.rail-return {
-  stroke: rgba(255, 255, 255, 0.34);
-  stroke-width: 1.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 5 5;
-}
-
-.route-dot {
-  fill: #0b0d10;
-  stroke: rgba(255, 255, 255, 0.86);
-  stroke-width: 1.5;
-}
-
-.route-text {
-  font-family: "Playfair Display", serif;
-  font-size: 15px;
-  letter-spacing: 0.04em;
-  fill: rgba(255, 255, 255, 0.78);
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(11, 13, 16, 0.22) 78%,
+    rgba(11, 13, 16, 0.72) 100%
+  );
 }
 
 @media screen and (max-width: 768px) {
@@ -1041,7 +1016,8 @@ font-size:2.3rem;
   }
 
   .route-map {
-    width: 260px;
+    width: 100%;
+    max-width: 360px;
     margin-top: 1.5rem;
   }
 }
