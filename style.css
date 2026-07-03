@@ -1109,3 +1109,36 @@ font-size:2.3rem;
     padding-left: 0;
   }
 }
+
+/* ---------- Journal Article ---------- */
+
+.journal-article{
+    max-width:720px;
+    margin:0 auto;
+}
+
+.article-title{
+    font-family:"Noto Serif SC", serif;
+    font-size:2rem;
+    font-weight:500;
+    letter-spacing:.18em;
+    margin:3rem 0 2.6rem;
+    color:rgba(255,255,255,.94);
+}
+
+.article-content{
+    max-width:640px;
+}
+
+.article-content p{
+
+    font-family:"Noto Serif SC", serif;
+    font-size:1.05rem;
+    font-weight:400;
+    line-height:2.15;
+    letter-spacing:.04em;
+    color:rgba(255,255,255,.84);
+    text-align:justify;
+    margin-bottom:2rem;
+
+}
