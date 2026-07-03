@@ -1021,3 +1021,91 @@ font-size:2.3rem;
 
     color:rgba(255,255,255,.50);
 }
+
+/* ---------- Journal Contents ---------- */
+
+.journal-page {
+  max-width: 760px;
+}
+
+.journal-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+
+  font-family: "Playfair Display", serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+
+  color: rgba(255, 255, 255, 0.58);
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.journal-back:hover {
+  color: #ffffff;
+  letter-spacing: 0.08em;
+}
+
+.journal-contents {
+  margin-top: 2.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.journal-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 36px;
+
+  padding: 1rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  text-decoration: none;
+  color: inherit;
+
+  transition: all 0.22s ease;
+}
+
+.journal-row:hover {
+  padding-left: 10px;
+  border-bottom-color: rgba(255, 255, 255, 0.28);
+}
+
+.journal-chapter {
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.journal-place {
+  font-family: "Playfair Display", serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.journal-row:hover .journal-chapter {
+  color: #ffffff;
+}
+
+.journal-row:hover .journal-place {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media screen and (max-width: 768px) {
+  .journal-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 1.1rem 0;
+  }
+
+  .journal-row:hover {
+    padding-left: 0;
+  }
+}
