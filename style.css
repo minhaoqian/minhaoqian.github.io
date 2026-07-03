@@ -928,9 +928,9 @@ font-size:2.3rem;
 }
 
 .route-map {
-  width: 560px;
+  width: 650px;
   margin-top: -1.2rem;
-  margin-left: -95px;
+  margin-left: -170px;
   position: relative;
   z-index: 1;
 }
