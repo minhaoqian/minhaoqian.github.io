@@ -986,3 +986,38 @@ font-size:2.3rem;
     margin-left: 0;
   }
 }
+
+/* ---------- Section Intro ---------- */
+
+.section-intro{
+    margin: 0.5rem 0 2.4rem;
+}
+
+.section-intro .cn{
+    display:block;
+
+    font-family:"Noto Serif SC", serif;
+    font-size:0.98rem;
+    font-weight:400;
+
+    line-height:1.8;
+    letter-spacing:0.08em;
+
+    color:rgba(245,240,232,.84);
+
+    margin-bottom:0.28rem;
+}
+
+.section-intro .en{
+    display:block;
+
+    font-family:"Playfair Display", serif;
+    font-size:0.82rem;
+    font-style:italic;
+    font-weight:400;
+
+    letter-spacing:0.04em;
+    line-height:1.7;
+
+    color:rgba(255,255,255,.50);
+}
