@@ -1144,89 +1144,98 @@ font-size:2.3rem;
 
 /* ---------- Journal Article ---------- */
 
-.journal-article{
-    max-width:720px;
-    margin:0 auto;
+.journal-article {
+    max-width: 720px;
+    margin: 0 auto;
 }
 
-.article-title{
-    font-family:"Playfair Display", serif;
-    font-size:2.3rem;
-    font-weight:500;
-    letter-spacing:.06em;
-    color:rgba(255,255,255,.94);
-    margin-top:3rem;
-    margin-bottom:.35rem;
+.article-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.3rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+
+    color: rgba(255,255,255,.94);
+
+    margin-top: 3rem;
+    margin-bottom: .35rem;
 }
 
-.article-meta{
-    font-family:"Playfair Display", serif;
-    font-size:.92rem;
-    font-style:italic;
-    color:rgba(255,255,255,.48);
-    margin-bottom:3rem;
+.article-title-cn {
+    font-family: "Noto Serif SC", serif;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+
+    color: rgba(255,255,255,.94);
+
+    margin-top: 3rem;
+    margin-bottom: 2.6rem;
 }
 
-.article-content{
-    max-width:640px;
+.article-meta {
+    font-family: "Playfair Display", serif;
+    font-size: .92rem;
+    font-style: italic;
+    letter-spacing: .03em;
+
+    color: rgba(255,255,255,.48);
+
+    margin-bottom: 2.8rem;
 }
 
-.article-content p{
-    font-family:"Noto Serif SC", serif;
-    font-size:1.05rem;
-    line-height:2.15;
-    letter-spacing:.04em;
-    color:rgba(255,255,255,.84);
-    text-align:justify;
-    margin-bottom:2rem;
+.article-content {
+    max-width: 640px;
 }
 
-/* 图片 */
+.article-content p {
+    font-family: "Noto Serif SC", serif;
+    font-size: 1.08rem;
+    font-weight: 400;
 
-.article-content img{
-    width:100%;
-    border-radius:4px;
-    margin:2rem 0;
+    line-height: 2.25;
+    letter-spacing: .045em;
+
+    color: rgba(245,240,232,.88);
+
+    text-align: justify;
+
+    margin: 0 0 2.3rem;
 }
 
-/* 图片说明 */
+/* ---------- Previous / Next ---------- */
 
-.photo-caption{
-    margin-top:-1rem;
-    margin-bottom:2rem;
-    text-align:center;
-    font-family:"Playfair Display", serif;
-    font-size:.82rem;
-    font-style:italic;
-    color:rgba(255,255,255,.45);
+.journal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 5rem;
+    padding-top: 2rem;
+
+    border-top: 1px solid rgba(255,255,255,.08);
 }
 
-/* 上下页 */
-.journal-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:5rem;
-    padding-top:2rem;
-    border-top:1px solid rgba(255,255,255,.08);
+.journal-nav a {
+    font-family: "Playfair Display", serif;
+    font-size: .95rem;
+    letter-spacing: .04em;
+
+    color: rgba(255,255,255,.58);
+
+    text-decoration: none;
+
+    transition: .25s ease;
 }
 
-.journal-nav a{
-    font-family:"Playfair Display", serif;
-    font-size:.95rem;
-    color:rgba(255,255,255,.58);
-    text-decoration:none;
-    transition:.25s;
+.journal-nav a:hover {
+    color: #fff;
 }
 
-.journal-nav a:hover{
-    color:#fff;
+.prev:hover {
+    transform: translateX(-5px);
 }
 
-.prev:hover{
-    transform:translateX(-5px);
-}
-
-.next:hover{
-    transform:translateX(5px);
+.next:hover {
+    transform: translateX(5px);
 }
