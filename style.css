@@ -1112,38 +1112,6 @@ font-size:2.3rem;
 
 /* ---------- Journal Article ---------- */
 
-.journal-article{
-    max-width:720px;
-    margin:0 auto;
-}
-
-.article-title{
-    font-family:"Noto Serif SC", serif;
-    font-size:2rem;
-    font-weight:500;
-    letter-spacing:.18em;
-    margin:3rem 0 2.6rem;
-    color:rgba(255,255,255,.94);
-}
-
-.article-content{
-    max-width:640px;
-}
-
-.article-content p{
-
-    font-family:"Noto Serif SC", serif;
-    font-size:1.05rem;
-    font-weight:400;
-    line-height:2.15;
-    letter-spacing:.04em;
-    color:rgba(255,255,255,.84);
-    text-align:justify;
-    margin-bottom:2rem;
-}
-
-/* ---------- Journal Article ---------- */
-
 .journal-article {
     max-width: 720px;
     margin: 0 auto;
@@ -1190,16 +1158,12 @@ font-size:2.3rem;
 
 .article-content p {
     font-family: "Noto Serif SC", serif;
-    font-size: 1.08rem;
+    font-size: 1rem;
     font-weight: 400;
-
-    line-height: 2.25;
+    line-height: 2;
     letter-spacing: .045em;
-
     color: rgba(245,240,232,.88);
-
     text-align: justify;
-
     margin: 0 0 2.3rem;
 }
 
@@ -1220,11 +1184,8 @@ font-size:2.3rem;
     font-family: "Playfair Display", serif;
     font-size: .95rem;
     letter-spacing: .04em;
-
     color: rgba(255,255,255,.58);
-
     text-decoration: none;
-
     transition: .25s ease;
 }
 
