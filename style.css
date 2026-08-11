@@ -1200,3 +1200,12 @@ font-size:2.3rem;
 .next:hover {
     transform: translateX(5px);
 }
+
+/* ---------- Epilogue ---------- */
+
+.epilogue-page .article-content p {
+    white-space: pre-line;
+    text-indent: 0;
+    line-height: 2.05;
+    margin-bottom: 2.6rem;
+}
