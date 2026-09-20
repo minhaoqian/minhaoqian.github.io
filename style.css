@@ -1209,3 +1209,34 @@ font-size:2.3rem;
     line-height: 2.05;
     margin-bottom: 2.6rem;
 }
+
+/* ---------- Graduation Note ---------- */
+
+.graduation-note .article-subtitle {
+    margin-top: -0.8rem;
+    margin-bottom: 3.5rem;
+
+    font-family: "Playfair Display", serif;
+    font-size: 0.9rem;
+    font-style: italic;
+
+    color: rgba(245, 240, 232, 0.45);
+}
+
+.graduation-note .article-content {
+    max-width: 620px;
+}
+
+.graduation-note .article-content p {
+    white-space: pre-line;
+    text-indent: 0;
+    line-height: 1.65;
+
+    margin-top: 0;
+    margin-bottom: 2.4rem;
+}
+
+.graduation-note .article-ending {
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+}
