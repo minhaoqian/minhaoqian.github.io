@@ -1240,3 +1240,25 @@ font-size:2.3rem;
     margin-top: 4.5rem;
     margin-bottom: 4.5rem;
 }
+
+/* ---------- Read More Link ---------- */
+
+.read-more {
+    display: inline-block;
+    margin-top: 0.9rem;
+
+    font-family: "Playfair Display", serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    letter-spacing: 0.03em;
+
+    color: rgba(245, 240, 232, 0.55);
+    text-decoration: none;
+
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.read-more:hover {
+    color: rgba(245, 240, 232, 0.9);
+    transform: translateX(4px);
+}
