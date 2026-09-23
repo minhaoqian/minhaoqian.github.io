@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Park | Amsterdam</title>
+    <title>Amsterdam | Europe by Rail</title>
 
-    <link rel="stylesheet" href="../../../../../style.css">
+    <link rel="stylesheet" href="../../../../style.css">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap"
@@ -14,13 +15,19 @@
     >
 </head>
 
+
 <body>
 
-<main class="page-container city-gallery">
+<main class="page-container gallery-city-index">
+
+    <!-- Site identity -->
 
     <div class="site-mark">
         Neil. Q
     </div>
+
+
+    <!-- Navigation -->
 
     <nav class="top-nav">
         <a href="/">Home</a>
@@ -37,198 +44,206 @@
 
     <a
         class="trip-back"
-        href="/travel/europe-by-rail/gallery/amsterdam/"
+        href="/travel/europe-by-rail/gallery/"
     >
-        ← Amsterdam
+        ← Europe Gallery
     </a>
 
 
     <!-- Header -->
 
-    <section class="city-gallery-header">
+    <header class="gallery-city-header">
 
-        <p class="city-gallery-location">
-            Amsterdam · Netherlands
+        <h1>Amsterdam</h1>
+
+        <p>
+            Netherlands · June 2026
         </p>
 
-        <h1>Park</h1>
+    </header>
+
+
+    <!-- Six category covers -->
+
+    <section class="category-grid">
+
+
+        <!-- 01 Park -->
+
+        <a
+            href="/travel/europe-by-rail/gallery/amsterdam/park/"
+            class="category-card"
+        >
+
+            <div class="category-image">
+
+                <img
+                    src="park/park1.jpg"
+                    alt="Park"
+                >
+
+            </div>
+
+            <div class="category-info">
+
+                <span>01</span>
+
+                <h2>Park</h2>
+
+            </div>
+
+        </a>
+
+
+        <!-- 02 Canals -->
+
+        <a
+            href="/travel/europe-by-rail/gallery/amsterdam/canals/"
+            class="category-card"
+        >
+
+            <div class="category-image">
+
+                <img
+                    src="canals/canal1.jpg"
+                    alt="Canals"
+                >
+
+            </div>
+
+            <div class="category-info">
+
+                <span>02</span>
+
+                <h2>Canals</h2>
+
+            </div>
+
+        </a>
+
+
+        <!-- 03 Streets -->
+
+        <a
+            href="/travel/europe-by-rail/gallery/amsterdam/streets/"
+            class="category-card"
+        >
+
+            <div class="category-image">
+
+                <img
+                    src="streets/streets1.jpg"
+                    alt="Streets"
+                >
+
+            </div>
+
+            <div class="category-info">
+
+                <span>03</span>
+
+                <h2>Streets</h2>
+
+            </div>
+
+        </a>
+
+
+        <!-- 04 Zaanse Schans -->
+
+        <a
+            href="/travel/europe-by-rail/gallery/amsterdam/zaanse-schans/"
+            class="category-card"
+        >
+
+            <div class="category-image">
+
+                <img
+                    src="zaanse-schans/zaanse-schans1.jpg"
+                    alt="Zaanse Schans"
+                >
+
+            </div>
+
+            <div class="category-info">
+
+                <span>04</span>
+
+                <h2>Zaanse Schans</h2>
+
+            </div>
+
+        </a>
+
+
+        <!-- 05 Football -->
+
+        <a
+            href="/travel/europe-by-rail/gallery/amsterdam/football/"
+            class="category-card"
+        >
+
+            <div class="category-image">
+
+                <img
+                    src="football/orange1.jpg"
+                    alt="Football"
+                >
+
+            </div>
+
+            <div class="category-info">
+
+                <span>05</span>
+
+                <h2>Football</h2>
+
+            </div>
+
+        </a>
+
+
+        <!-- 06 Art -->
+
+        <a
+            href="/travel/europe-by-rail/gallery/amsterdam/art/"
+            class="category-card"
+        >
+
+            <div class="category-image">
+
+                <img
+                    src="art/art1.jpg"
+                    alt="Art"
+                >
+
+            </div>
+
+            <div class="category-info">
+
+                <span>06</span>
+
+                <h2>Art</h2>
+
+            </div>
+
+        </a>
+
 
     </section>
 
 
-    <!-- Photos -->
-
-    <section class="photo-chapter">
-
-        <div class="editorial-gallery layout-four">
-
-            <img
-                src="park1.jpg"
-                alt=""
-                loading="lazy"
-            >
-
-            <img
-                src="park2.jpg"
-                alt=""
-                loading="lazy"
-            >
-
-            <img
-                src="park3.jpg"
-                alt=""
-                loading="lazy"
-            >
-
-            <img
-                src="park4.jpg"
-                alt=""
-                loading="lazy"
-            >
-
-        </div>
-
-    </section>
-
-
-    <!-- Bottom navigation -->
+    <!-- Bottom -->
 
     <div class="gallery-end">
 
-        <a href="/travel/europe-by-rail/gallery/amsterdam/">
-            ← Amsterdam
+        <a href="/travel/europe-by-rail/gallery/">
+            ← Europe Gallery
         </a>
 
     </div>
 
 </main>
-
-
-<!-- Fullscreen viewer -->
-
-<div class="photo-lightbox" id="photoLightbox">
-
-    <button class="lightbox-close" aria-label="Close image">
-        ×
-    </button>
-
-    <button class="lightbox-prev" aria-label="Previous image">
-        ‹
-    </button>
-
-    <img id="lightboxImage" src="" alt="">
-
-    <button class="lightbox-next" aria-label="Next image">
-        ›
-    </button>
-
-</div>
-
-
-<script>
-
-const galleryImages =
-    Array.from(document.querySelectorAll(".editorial-gallery img"));
-
-const lightbox =
-    document.getElementById("photoLightbox");
-
-const lightboxImage =
-    document.getElementById("lightboxImage");
-
-const closeButton =
-    document.querySelector(".lightbox-close");
-
-const previousButton =
-    document.querySelector(".lightbox-prev");
-
-const nextButton =
-    document.querySelector(".lightbox-next");
-
-let currentImageIndex = 0;
-
-
-function showImage(index) {
-
-    currentImageIndex =
-        (index + galleryImages.length) % galleryImages.length;
-
-    const selectedImage =
-        galleryImages[currentImageIndex];
-
-    lightboxImage.src = selectedImage.src;
-}
-
-
-galleryImages.forEach((image, index) => {
-
-    image.addEventListener("click", () => {
-
-        showImage(index);
-
-        lightbox.classList.add("active");
-
-        document.body.classList.add("lightbox-open");
-
-    });
-
-});
-
-
-closeButton.addEventListener("click", () => {
-
-    lightbox.classList.remove("active");
-
-    document.body.classList.remove("lightbox-open");
-
-});
-
-
-previousButton.addEventListener("click", () => {
-    showImage(currentImageIndex - 1);
-});
-
-
-nextButton.addEventListener("click", () => {
-    showImage(currentImageIndex + 1);
-});
-
-
-lightbox.addEventListener("click", event => {
-
-    if (event.target === lightbox) {
-
-        lightbox.classList.remove("active");
-
-        document.body.classList.remove("lightbox-open");
-
-    }
-
-});
-
-
-document.addEventListener("keydown", event => {
-
-    if (!lightbox.classList.contains("active")) {
-        return;
-    }
-
-    if (event.key === "Escape") {
-        lightbox.classList.remove("active");
-        document.body.classList.remove("lightbox-open");
-    }
-
-    if (event.key === "ArrowLeft") {
-        showImage(currentImageIndex - 1);
-    }
-
-    if (event.key === "ArrowRight") {
-        showImage(currentImageIndex + 1);
-    }
-
-});
-
-</script>
 
 </body>
 </html>
