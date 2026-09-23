@@ -1410,3 +1410,426 @@ font-size:2.3rem;
     }
 
 }
+
+/* ==================================================
+   CITY PHOTO GALLERY
+   ================================================== */
+
+.city-gallery {
+    padding-bottom: 10rem;
+}
+
+
+/* ---------- Header ---------- */
+
+.city-gallery-header {
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+}
+
+.city-gallery-location {
+    font-family: "Playfair Display", serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: rgba(245, 240, 232, 0.4);
+    margin-bottom: 0.8rem;
+}
+
+.city-gallery-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3.4rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+
+/* ---------- Chapter ---------- */
+
+.photo-chapter {
+    margin-bottom: 13rem;
+}
+
+.photo-chapter-header {
+    margin-bottom: 3.5rem;
+}
+
+.photo-chapter-header span {
+    display: block;
+
+    font-family: "Playfair Display", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+
+    color: rgba(245, 240, 232, 0.3);
+
+    margin-bottom: 0.65rem;
+}
+
+.photo-chapter-header h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+
+    margin: 0;
+
+    color: rgba(245, 240, 232, 0.9);
+}
+
+
+/* ==================================================
+   EDITORIAL PHOTO SYSTEM
+   ================================================== */
+
+.editorial-gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(12, minmax(0, 1fr));
+
+    column-gap: 2rem;
+    row-gap: 5rem;
+
+    align-items: start;
+}
+
+
+/* Every image keeps its original ratio */
+
+.editorial-gallery img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    cursor: zoom-in;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.4s ease;
+}
+
+.editorial-gallery img:hover {
+    opacity: 0.88;
+}
+
+
+/* ==================================================
+   4 PHOTO COMPOSITION
+   ================================================== */
+
+.layout-four img:nth-child(1) {
+    grid-column: 1 / 9;
+}
+
+.layout-four img:nth-child(2) {
+    grid-column: 9 / 13;
+    margin-top: 7rem;
+}
+
+.layout-four img:nth-child(3) {
+    grid-column: 2 / 6;
+    margin-top: 2rem;
+}
+
+.layout-four img:nth-child(4) {
+    grid-column: 7 / 13;
+    margin-top: 6rem;
+}
+
+
+/* ==================================================
+   5 PHOTO COMPOSITION
+   ================================================== */
+
+.layout-five img:nth-child(1) {
+    grid-column: 1 / 8;
+}
+
+.layout-five img:nth-child(2) {
+    grid-column: 9 / 13;
+    margin-top: 5rem;
+}
+
+.layout-five img:nth-child(3) {
+    grid-column: 2 / 6;
+    margin-top: 3rem;
+}
+
+.layout-five img:nth-child(4) {
+    grid-column: 7 / 13;
+    margin-top: 8rem;
+}
+
+.layout-five img:nth-child(5) {
+    grid-column: 3 / 10;
+    margin-top: 3rem;
+}
+
+
+/* ==================================================
+   6 PHOTO COMPOSITION
+   ================================================== */
+
+.layout-six img:nth-child(1) {
+    grid-column: 1 / 9;
+}
+
+.layout-six img:nth-child(2) {
+    grid-column: 9 / 13;
+    margin-top: 6rem;
+}
+
+.layout-six img:nth-child(3) {
+    grid-column: 2 / 6;
+    margin-top: 2rem;
+}
+
+.layout-six img:nth-child(4) {
+    grid-column: 7 / 13;
+    margin-top: 7rem;
+}
+
+.layout-six img:nth-child(5) {
+    grid-column: 1 / 6;
+    margin-top: 4rem;
+}
+
+.layout-six img:nth-child(6) {
+    grid-column: 7 / 12;
+    margin-top: 1rem;
+}
+
+
+/* ==================================================
+   7 PHOTO COMPOSITION
+   ================================================== */
+
+.layout-seven img:nth-child(1) {
+    grid-column: 1 / 9;
+}
+
+.layout-seven img:nth-child(2) {
+    grid-column: 9 / 13;
+    margin-top: 6rem;
+}
+
+.layout-seven img:nth-child(3) {
+    grid-column: 2 / 6;
+    margin-top: 2rem;
+}
+
+.layout-seven img:nth-child(4) {
+    grid-column: 7 / 13;
+    margin-top: 8rem;
+}
+
+.layout-seven img:nth-child(5) {
+    grid-column: 1 / 6;
+    margin-top: 3rem;
+}
+
+.layout-seven img:nth-child(6) {
+    grid-column: 7 / 11;
+    margin-top: 7rem;
+}
+
+.layout-seven img:nth-child(7) {
+    grid-column: 3 / 11;
+    margin-top: 4rem;
+}
+
+
+/* ---------- End ---------- */
+
+.gallery-end {
+    margin-top: 4rem;
+    padding-top: 3rem;
+
+    border-top:
+        1px solid rgba(245, 240, 232, 0.08);
+}
+
+.gallery-end a {
+    font-family: "Playfair Display", serif;
+    font-size: 0.9rem;
+
+    color: rgba(245, 240, 232, 0.5);
+
+    text-decoration: none;
+
+    transition: color 0.25s ease;
+}
+
+.gallery-end a:hover {
+    color: rgba(245, 240, 232, 0.9);
+}
+
+
+/* ==================================================
+   LIGHTBOX
+   ================================================== */
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+.photo-lightbox {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(10, 10, 10, 0.96);
+
+    padding: 3rem;
+}
+
+.photo-lightbox.active {
+    display: flex;
+}
+
+.photo-lightbox img {
+    display: block;
+
+    max-width: 90vw;
+    max-height: 88vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* Close */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 1.8rem;
+    right: 2.2rem;
+
+    border: 0;
+    background: none;
+
+    color: rgba(245, 240, 232, 0.7);
+
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+
+    cursor: pointer;
+}
+
+
+/* Arrows */
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: 0;
+    background: none;
+
+    color: rgba(245, 240, 232, 0.55);
+
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+
+    cursor: pointer;
+
+    padding: 1rem;
+
+    transition: color 0.25s ease;
+}
+
+.lightbox-prev {
+    left: 1.5rem;
+}
+
+.lightbox-next {
+    right: 1.5rem;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:hover {
+    color: rgba(245, 240, 232, 1);
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 700px) {
+
+    .city-gallery-header {
+        margin-top: 4rem;
+        margin-bottom: 7rem;
+    }
+
+    .city-gallery-header h1 {
+        font-size: 2.6rem;
+    }
+
+    .photo-chapter {
+        margin-bottom: 8rem;
+    }
+
+    .photo-chapter-header {
+        margin-bottom: 2.5rem;
+    }
+
+    /*
+       On mobile we deliberately abandon
+       the editorial grid.
+    */
+
+    .editorial-gallery {
+        display: block;
+    }
+
+    .editorial-gallery img {
+        width: 100%;
+
+        margin:
+            0
+            0
+            2.5rem
+            0 !important;
+    }
+
+    .photo-lightbox {
+        padding: 1rem;
+    }
+
+    .photo-lightbox img {
+        max-width: 94vw;
+        max-height: 82vh;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 2.4rem;
+    }
+
+    .lightbox-prev {
+        left: 0.2rem;
+    }
+
+    .lightbox-next {
+        right: 0.2rem;
+    }
+
+}
