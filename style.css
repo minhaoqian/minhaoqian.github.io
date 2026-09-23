@@ -1262,3 +1262,151 @@ font-size:2.3rem;
     color: rgba(245, 240, 232, 0.9);
     transform: translateX(4px);
 }
+
+/* ==================================================
+   EUROPE BY RAIL — GALLERY INDEX
+   ================================================== */
+
+.gallery-index {
+    padding-bottom: 8rem;
+}
+
+
+/* Header */
+
+.gallery-index-header {
+    margin-top: 5rem;
+    margin-bottom: 7rem;
+}
+
+.gallery-index-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0 0 1.8rem;
+}
+
+.gallery-index-cn {
+    font-family: "Noto Serif SC", serif;
+    font-size: 1rem;
+    margin: 0 0 0.4rem;
+    color: rgba(245, 240, 232, 0.7);
+}
+
+.gallery-index-en {
+    font-family: "Playfair Display", serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+    color: rgba(245, 240, 232, 0.4);
+}
+
+
+/* Places */
+
+.gallery-places {
+    max-width: 980px;
+}
+
+
+/* Individual place */
+
+.gallery-place {
+    display: block;
+    margin-bottom: 8rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Cover image */
+
+.gallery-cover {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 1.6rem;
+}
+
+.gallery-cover img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+
+    transition:
+        transform 0.6s ease,
+        opacity 0.4s ease;
+}
+
+
+/* Hover */
+
+.gallery-place:hover .gallery-cover img {
+    transform: scale(1.015);
+    opacity: 0.9;
+}
+
+
+/* Information */
+
+.gallery-place-info {
+    position: relative;
+}
+
+.gallery-number {
+    display: block;
+
+    font-family: "Playfair Display", serif;
+    font-size: 0.75rem;
+
+    letter-spacing: 0.08em;
+
+    color: rgba(245, 240, 232, 0.3);
+
+    margin-bottom: 0.6rem;
+}
+
+.gallery-place-info h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.65rem;
+    font-weight: 400;
+
+    margin: 0 0 0.35rem;
+
+    color: rgba(245, 240, 232, 0.92);
+}
+
+.gallery-place-info p {
+    font-family: "Playfair Display", serif;
+
+    font-size: 0.85rem;
+
+    margin: 0;
+
+    color: rgba(245, 240, 232, 0.4);
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .gallery-index-header {
+        margin-top: 4rem;
+        margin-bottom: 5rem;
+    }
+
+    .gallery-index-header h1 {
+        font-size: 2.4rem;
+    }
+
+    .gallery-place {
+        margin-bottom: 5rem;
+    }
+
+    .gallery-cover img {
+        aspect-ratio: 4 / 3;
+    }
+
+}
