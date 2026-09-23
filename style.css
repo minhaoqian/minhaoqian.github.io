@@ -1264,7 +1264,13 @@ font-size:2.3rem;
 }
 
 /* ==================================================
-   EUROPE BY RAIL — GALLERY INDEX
+   TRAVEL GALLERY SYSTEM
+   ================================================== */
+
+
+/* ==================================================
+   1. EUROPE GALLERY INDEX
+   Amsterdam / Brussels / Paris / Mont Saint-Michel
    ================================================== */
 
 .gallery-index {
@@ -1272,7 +1278,7 @@ font-size:2.3rem;
 }
 
 
-/* ---------- Gallery Header ---------- */
+/* ---------- Header ---------- */
 
 .gallery-index-header {
     margin-top: 5rem;
@@ -1281,55 +1287,65 @@ font-size:2.3rem;
 
 .gallery-index-header h1 {
     font-family: "Playfair Display", serif;
+
     font-size: 3rem;
     font-weight: 400;
+
     margin: 0 0 1.8rem;
 }
 
 .gallery-index-cn {
     font-family: "Noto Serif SC", serif;
+
     font-size: 1rem;
+
     margin: 0 0 0.4rem;
+
     color: rgba(245, 240, 232, 0.7);
 }
 
 .gallery-index-en {
     font-family: "Playfair Display", serif;
+
     font-size: 0.9rem;
     font-style: italic;
+
     margin: 0;
+
     color: rgba(245, 240, 232, 0.4);
 }
 
 
-/* ---------- Places / Categories ---------- */
+/* ---------- City entries ---------- */
 
 .gallery-places {
     max-width: 980px;
 }
 
-
-/* Individual place */
-
 .gallery-place {
     display: block;
-    margin-bottom: 9rem;
+
+    margin-bottom: 8rem;
+
     text-decoration: none;
+
     color: inherit;
 }
 
 
-/* ==================================================
-   COVER IMAGE
+/*
+   Main Europe Gallery covers.
 
-   IMPORTANT:
-   Do not force a fixed aspect ratio.
-   Every photograph keeps its original composition.
-   ================================================== */
+   These are intentionally larger than
+   the category thumbnails inside a city.
+*/
 
 .gallery-cover {
     width: 100%;
+
     margin-bottom: 1.6rem;
+
+    overflow: hidden;
 }
 
 .gallery-cover img {
@@ -1341,20 +1357,18 @@ font-size:2.3rem;
     object-fit: contain;
 
     transition:
-        transform 0.6s ease,
-        opacity 0.4s ease;
+        transform 0.5s ease,
+        opacity 0.35s ease;
 }
-
-
-/* Hover */
 
 .gallery-place:hover .gallery-cover img {
     transform: scale(1.01);
+
     opacity: 0.9;
 }
 
 
-/* ---------- Place Information ---------- */
+/* ---------- Information ---------- */
 
 .gallery-place-info {
     position: relative;
@@ -1363,33 +1377,34 @@ font-size:2.3rem;
 .gallery-number {
     display: block;
 
+    margin-bottom: 0.6rem;
+
     font-family: "Playfair Display", serif;
+
     font-size: 0.75rem;
 
     letter-spacing: 0.08em;
 
     color: rgba(245, 240, 232, 0.3);
-
-    margin-bottom: 0.6rem;
 }
 
 .gallery-place-info h2 {
+    margin: 0 0 0.35rem;
+
     font-family: "Playfair Display", serif;
 
     font-size: 1.65rem;
     font-weight: 400;
 
-    margin: 0 0 0.35rem;
-
     color: rgba(245, 240, 232, 0.92);
 }
 
 .gallery-place-info p {
+    margin: 0;
+
     font-family: "Playfair Display", serif;
 
     font-size: 0.85rem;
-
-    margin: 0;
 
     color: rgba(245, 240, 232, 0.4);
 }
@@ -1397,109 +1412,244 @@ font-size:2.3rem;
 
 
 /* ==================================================
-   CITY / CATEGORY PHOTO PAGE
+   2. CITY GALLERY INDEX
+   Example: Amsterdam
    ================================================== */
 
-.city-gallery {
-    max-width: 1050px;
+.gallery-city-index {
+    padding-bottom: 9rem;
+}
 
-    margin-left: auto;
-    margin-right: auto;
 
+/* ---------- City Header ---------- */
+
+.gallery-city-header {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.gallery-city-header h1 {
+    margin: 0 0 0.8rem;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 3.4rem;
+    font-weight: 400;
+
+    color: rgba(245, 240, 232, 0.95);
+}
+
+.gallery-city-header p {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 0.04em;
+
+    color: rgba(245, 240, 232, 0.4);
+}
+
+
+
+/* ==================================================
+   CITY CATEGORY GRID
+   6 categories = 3 × 2
+   ================================================== */
+
+.category-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    column-gap: 2rem;
+    row-gap: 4rem;
+
+    width: 100%;
+}
+
+
+/* ---------- Card ---------- */
+
+.category-card {
+    display: block;
+
+    min-width: 0;
+
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+/*
+   Every category receives the same visual box.
+
+   The photograph itself is NEVER cropped.
+   Horizontal images expand by width.
+   Vertical images expand by height.
+   Remaining space becomes part of the design.
+*/
+
+.category-image {
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    margin-bottom: 1.15rem;
+
+    background:
+        rgba(245, 240, 232, 0.015);
+}
+
+.category-image img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.45s ease;
+}
+
+
+.category-card:hover .category-image img {
+    opacity: 0.88;
+
+    transform: scale(1.015);
+}
+
+
+/* ---------- Category title ---------- */
+
+.category-info span {
+    display: block;
+
+    margin-bottom: 0.35rem;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.1em;
+
+    color: rgba(245, 240, 232, 0.28);
+}
+
+.category-info h2 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.25rem;
+    font-weight: 400;
+
+    color: rgba(245, 240, 232, 0.88);
+}
+
+
+
+/* ==================================================
+   3. INDIVIDUAL PHOTO CATEGORY PAGE
+   Park / Canals / Streets / etc.
+   ================================================== */
+
+.photo-gallery-page {
     padding-bottom: 10rem;
 }
 
 
 /* ---------- Header ---------- */
 
-.city-gallery-header {
+.photo-gallery-header {
     margin-top: 5rem;
-    margin-bottom: 10rem;
+    margin-bottom: 6rem;
 }
 
-.city-gallery-location {
-    font-family: "Playfair Display", serif;
-
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-
-    color: rgba(245, 240, 232, 0.4);
-
-    margin-bottom: 0.8rem;
-}
-
-.city-gallery-header h1 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 3.4rem;
-    font-weight: 400;
-
-    margin: 0;
-}
-
-
-/* ---------- Photo Chapter ---------- */
-
-.photo-chapter {
-    margin-bottom: 15rem;
-}
-
-.photo-chapter-header {
-    margin-bottom: 4rem;
-}
-
-.photo-chapter-header span {
-    display: block;
+.photo-gallery-header p {
+    margin: 0 0 0.7rem;
 
     font-family: "Playfair Display", serif;
 
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    font-size: 0.8rem;
 
-    color: rgba(245, 240, 232, 0.3);
+    letter-spacing: 0.05em;
 
-    margin-bottom: 0.65rem;
+    color: rgba(245, 240, 232, 0.38);
 }
 
-.photo-chapter-header h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 1.8rem;
-    font-weight: 400;
-
+.photo-gallery-header h1 {
     margin: 0;
 
-    color: rgba(245, 240, 232, 0.9);
+    font-family: "Playfair Display", serif;
+
+    font-size: 3.2rem;
+    font-weight: 400;
+
+    color: rgba(245, 240, 232, 0.95);
 }
 
 
 
 /* ==================================================
-   EDITORIAL PHOTO SYSTEM
-
-   Photographs keep their original aspect ratios.
-   The grid only controls their position and size.
+   PHOTO GRID
    ================================================== */
 
-.editorial-gallery {
-    display: grid;
-
-    grid-template-columns:
-        repeat(12, minmax(0, 1fr));
-
-    column-gap: 2rem;
-    row-gap: 8rem;
-
-    align-items: start;
+.photo-grid {
+    width: 100%;
 }
 
 
-/* Every image keeps its original ratio */
+/*
+   Each cell is a fixed visual area.
 
-.editorial-gallery img {
+   The image keeps its complete original composition.
+   No cropping.
+
+   Landscape:
+       tends to fill the width.
+
+   Portrait:
+       tends to fill the height.
+
+   Empty space is intentional.
+*/
+
+.photo-cell {
+    min-width: 0;
+
+    height: 440px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.photo-cell img {
     display: block;
 
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
     height: auto;
 
     object-fit: contain;
@@ -1508,145 +1658,119 @@ font-size:2.3rem;
 
     transition:
         opacity 0.3s ease,
-        transform 0.4s ease;
+        transform 0.35s ease;
 }
 
-.editorial-gallery img:hover {
+.photo-cell img:hover {
     opacity: 0.88;
+
+    transform: scale(1.01);
 }
 
 
 
 /* ==================================================
-   4 PHOTO COMPOSITION
-   Example: Park
+   4 PHOTOS
+   2 + 2
    ================================================== */
 
-.layout-four img:nth-child(1) {
-    grid-column: 2 / 9;
-}
+.layout-four {
+    display: grid;
 
-.layout-four img:nth-child(2) {
-    grid-column: 9 / 12;
-    margin-top: 8rem;
-}
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-.layout-four img:nth-child(3) {
-    grid-column: 1 / 5;
-    margin-top: 5rem;
-}
-
-.layout-four img:nth-child(4) {
-    grid-column: 6 / 11;
-    margin-top: 10rem;
+    gap: 3rem 3rem;
 }
 
 
 
 /* ==================================================
-   5 PHOTO COMPOSITION
-   Example: Streets
+   5 PHOTOS
+   2 + 3
    ================================================== */
 
-.layout-five img:nth-child(1) {
-    grid-column: 2 / 9;
+.layout-five {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    gap: 3rem 2rem;
 }
 
-.layout-five img:nth-child(2) {
-    grid-column: 9 / 12;
-    margin-top: 7rem;
+
+/* First row: 2 */
+
+.layout-five .photo-cell:nth-child(1),
+.layout-five .photo-cell:nth-child(2) {
+    grid-column: span 3;
 }
 
-.layout-five img:nth-child(3) {
-    grid-column: 1 / 5;
-    margin-top: 5rem;
-}
 
-.layout-five img:nth-child(4) {
-    grid-column: 6 / 11;
-    margin-top: 9rem;
-}
+/* Second row: 3 */
 
-.layout-five img:nth-child(5) {
-    grid-column: 3 / 9;
-    margin-top: 4rem;
+.layout-five .photo-cell:nth-child(3),
+.layout-five .photo-cell:nth-child(4),
+.layout-five .photo-cell:nth-child(5) {
+    grid-column: span 2;
 }
 
 
 
 /* ==================================================
-   6 PHOTO COMPOSITION
-   Example: Zaanse Schans / Football / Art
+   6 PHOTOS
+   3 + 3
    ================================================== */
 
-.layout-six img:nth-child(1) {
-    grid-column: 2 / 9;
-}
+.layout-six {
+    display: grid;
 
-.layout-six img:nth-child(2) {
-    grid-column: 9 / 12;
-    margin-top: 7rem;
-}
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-.layout-six img:nth-child(3) {
-    grid-column: 1 / 5;
-    margin-top: 4rem;
-}
-
-.layout-six img:nth-child(4) {
-    grid-column: 6 / 11;
-    margin-top: 9rem;
-}
-
-.layout-six img:nth-child(5) {
-    grid-column: 2 / 7;
-    margin-top: 5rem;
-}
-
-.layout-six img:nth-child(6) {
-    grid-column: 8 / 12;
-    margin-top: 10rem;
+    gap: 3rem 2rem;
 }
 
 
 
 /* ==================================================
-   7 PHOTO COMPOSITION
-   Example: Canals
+   7 PHOTOS
+   2 + 3 + 2
    ================================================== */
 
-.layout-seven img:nth-child(1) {
-    grid-column: 2 / 9;
+.layout-seven {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    gap: 3rem 2rem;
 }
 
-.layout-seven img:nth-child(2) {
-    grid-column: 9 / 12;
-    margin-top: 7rem;
+
+/* Row 1: 2 */
+
+.layout-seven .photo-cell:nth-child(1),
+.layout-seven .photo-cell:nth-child(2) {
+    grid-column: span 3;
 }
 
-.layout-seven img:nth-child(3) {
-    grid-column: 1 / 5;
-    margin-top: 5rem;
+
+/* Row 2: 3 */
+
+.layout-seven .photo-cell:nth-child(3),
+.layout-seven .photo-cell:nth-child(4),
+.layout-seven .photo-cell:nth-child(5) {
+    grid-column: span 2;
 }
 
-.layout-seven img:nth-child(4) {
-    grid-column: 6 / 11;
-    margin-top: 9rem;
-}
 
-.layout-seven img:nth-child(5) {
-    grid-column: 2 / 7;
-    margin-top: 4rem;
-}
+/* Row 3: 2 */
 
-.layout-seven img:nth-child(6) {
-    grid-column: 8 / 12;
-    margin-top: 9rem;
-}
-
-.layout-seven img:nth-child(7) {
-    grid-column: 3 / 10;
-    margin-top: 5rem;
+.layout-seven .photo-cell:nth-child(6),
+.layout-seven .photo-cell:nth-child(7) {
+    grid-column: span 3;
 }
 
 
@@ -1656,7 +1780,7 @@ font-size:2.3rem;
    ================================================== */
 
 .gallery-end {
-    margin-top: 5rem;
+    margin-top: 7rem;
 
     padding-top: 3rem;
 
@@ -1684,7 +1808,7 @@ font-size:2.3rem;
 
 
 /* ==================================================
-   LIGHTBOX
+   4. LIGHTBOX
    ================================================== */
 
 body.lightbox-open {
@@ -1704,10 +1828,10 @@ body.lightbox-open {
     align-items: center;
     justify-content: center;
 
+    padding: 3rem;
+
     background:
         rgba(8, 8, 8, 0.97);
-
-    padding: 3rem;
 }
 
 
@@ -1715,12 +1839,6 @@ body.lightbox-open {
     display: flex;
 }
 
-
-/*
-   In the lightbox the photograph CAN be large.
-   This is deliberate: the visitor has chosen
-   to inspect the image.
-*/
 
 .photo-lightbox img {
     display: block;
@@ -1745,6 +1863,7 @@ body.lightbox-open {
     right: 2.2rem;
 
     border: 0;
+
     background: none;
 
     color: rgba(245, 240, 232, 0.7);
@@ -1762,7 +1881,7 @@ body.lightbox-open {
 
 
 
-/* ---------- Arrows ---------- */
+/* ---------- Previous / Next ---------- */
 
 .lightbox-prev,
 .lightbox-next {
@@ -1773,6 +1892,7 @@ body.lightbox-open {
     transform: translateY(-50%);
 
     border: 0;
+
     background: none;
 
     color: rgba(245, 240, 232, 0.5);
@@ -1794,6 +1914,7 @@ body.lightbox-open {
     left: 1.5rem;
 }
 
+
 .lightbox-next {
     right: 1.5rem;
 }
@@ -1808,10 +1929,46 @@ body.lightbox-open {
 
 
 /* ==================================================
-   MOBILE — GALLERY INDEX
+   5. TABLET
+   ================================================== */
+
+@media (max-width: 900px) {
+
+    /*
+       Amsterdam category index:
+       3 columns → 2 columns
+    */
+
+    .category-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        column-gap: 1.5rem;
+        row-gap: 3.5rem;
+    }
+
+
+    /*
+       Slightly smaller photo cells
+       so a row still feels coherent.
+    */
+
+    .photo-cell {
+        height: 380px;
+    }
+
+}
+
+
+
+/* ==================================================
+   6. MOBILE
    ================================================== */
 
 @media (max-width: 700px) {
+
+
+    /* ---------- Main Gallery ---------- */
 
     .gallery-index-header {
         margin-top: 4rem;
@@ -1827,14 +1984,126 @@ body.lightbox-open {
     }
 
 
+
+    /* ---------- Amsterdam Header ---------- */
+
+    .gallery-city-header {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .gallery-city-header h1 {
+        font-size: 2.6rem;
+    }
+
+
+
     /*
-       Covers still keep their original ratio.
-       No cropping on mobile either.
+       Amsterdam categories remain 2 columns
+       on normal phones.
     */
 
-    .gallery-cover img {
-        width: 100%;
-        height: auto;
+    .category-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        column-gap: 1rem;
+        row-gap: 3rem;
+    }
+
+
+    .category-image {
+        aspect-ratio: 4 / 3;
+
+        margin-bottom: 0.9rem;
+    }
+
+
+    .category-info h2 {
+        font-size: 1.05rem;
+    }
+
+
+
+    /* ---------- Photo Page Header ---------- */
+
+    .photo-gallery-header {
+        margin-top: 4rem;
+        margin-bottom: 4.5rem;
+    }
+
+    .photo-gallery-header h1 {
+        font-size: 2.6rem;
+    }
+
+
+
+    /*
+       On mobile all gallery layouts become
+       a simple two-column system.
+
+       This works especially well with portrait photos.
+    */
+
+    .layout-four,
+    .layout-five,
+    .layout-six,
+    .layout-seven {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 1.5rem 1rem;
+    }
+
+
+    /*
+       Remove desktop span rules.
+    */
+
+    .layout-five .photo-cell:nth-child(n),
+    .layout-seven .photo-cell:nth-child(n) {
+        grid-column: auto;
+    }
+
+
+    .photo-cell {
+        height: 300px;
+    }
+
+
+
+    /* ---------- Gallery End ---------- */
+
+    .gallery-end {
+        margin-top: 5rem;
+    }
+
+
+
+    /* ---------- Lightbox ---------- */
+
+    .photo-lightbox {
+        padding: 1rem;
+    }
+
+    .photo-lightbox img {
+        max-width: 94vw;
+        max-height: 82vh;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 2.4rem;
+    }
+
+    .lightbox-prev {
+        left: 0.2rem;
+    }
+
+    .lightbox-next {
+        right: 0.2rem;
     }
 
 }
@@ -1842,84 +2111,41 @@ body.lightbox-open {
 
 
 /* ==================================================
-   MOBILE — PHOTO PAGE
+   7. VERY SMALL MOBILE
    ================================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 430px) {
 
-    .city-gallery {
-        max-width: none;
-    }
+    /*
+       Keep the Amsterdam directory compact:
+       still 2 columns.
+    */
 
-
-    .city-gallery-header {
-        margin-top: 4rem;
-        margin-bottom: 7rem;
-    }
-
-
-    .city-gallery-header h1 {
-        font-size: 2.6rem;
-    }
-
-
-    .photo-chapter {
-        margin-bottom: 8rem;
-    }
-
-
-    .photo-chapter-header {
-        margin-bottom: 2.5rem;
+    .category-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
 
     /*
-       Desktop = editorial composition.
-       Mobile = simple single-column photobook.
+       Individual photo galleries become
+       one image per row only on very narrow screens.
     */
 
-    .editorial-gallery {
-        display: block;
+    .layout-four,
+    .layout-five,
+    .layout-six,
+    .layout-seven {
+        grid-template-columns: 1fr;
+
+        gap: 2rem;
     }
 
 
-    .editorial-gallery img {
-        width: 100%;
+    .photo-cell {
+        height: 65vh;
 
-        margin:
-            0
-            0
-            3rem
-            0 !important;
-    }
-
-
-    /* Lightbox */
-
-    .photo-lightbox {
-        padding: 1rem;
-    }
-
-
-    .photo-lightbox img {
-        max-width: 94vw;
-        max-height: 82vh;
-    }
-
-
-    .lightbox-prev,
-    .lightbox-next {
-        font-size: 2.4rem;
-    }
-
-
-    .lightbox-prev {
-        left: 0.2rem;
-    }
-
-
-    .lightbox-next {
-        right: 0.2rem;
+        max-height: 520px;
     }
 
 }
