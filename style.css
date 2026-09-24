@@ -2149,3 +2149,9 @@ body.lightbox-open {
     }
 
 }
+
+/* Brussels: 4 categories = 2 × 2 */
+
+.brussels-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
