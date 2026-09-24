@@ -1215,11 +1215,9 @@ font-size:2.3rem;
 .graduation-note .article-subtitle {
     margin-top: -0.8rem;
     margin-bottom: 3.5rem;
-
     font-family: "Playfair Display", serif;
     font-size: 0.9rem;
     font-style: italic;
-
     color: rgba(245, 240, 232, 0.45);
 }
 
@@ -1231,7 +1229,6 @@ font-size:2.3rem;
     white-space: pre-line;
     text-indent: 0;
     line-height: 1.65;
-
     margin-top: 0;
     margin-bottom: 2.4rem;
 }
@@ -1246,15 +1243,12 @@ font-size:2.3rem;
 .read-more {
     display: inline-block;
     margin-top: 0.9rem;
-
     font-family: "Playfair Display", serif;
     font-size: 0.85rem;
     font-style: italic;
     letter-spacing: 0.03em;
-
     color: rgba(245, 240, 232, 0.55);
     text-decoration: none;
-
     transition: color 0.25s ease, transform 0.25s ease;
 }
 
@@ -1281,54 +1275,55 @@ font-size:2.3rem;
 /* ---------- Header ---------- */
 
 .gallery-index-header {
-    margin-top: 5rem;
-    margin-bottom: 7rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
 .gallery-index-header h1 {
     font-family: "Playfair Display", serif;
-
     font-size: 3rem;
     font-weight: 400;
-
     margin: 0 0 1.8rem;
 }
 
 .gallery-index-cn {
     font-family: "Noto Serif SC", serif;
-
     font-size: 1rem;
-
     margin: 0 0 0.4rem;
-
     color: rgba(245, 240, 232, 0.7);
 }
 
 .gallery-index-en {
     font-family: "Playfair Display", serif;
-
     font-size: 0.9rem;
     font-style: italic;
-
     margin: 0;
-
     color: rgba(245, 240, 232, 0.4);
 }
 
 
 /* ---------- City entries ---------- */
 
+/* ==================================================
+   EUROPE GALLERY — 2 × 2 CITY GRID
+   ================================================== */
+
 .gallery-places {
-    max-width: 980px;
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
+    row-gap: 3rem;
 }
+
 
 .gallery-place {
     display: block;
-
-    margin-bottom: 8rem;
-
+    min-width: 0;
+    margin-bottom: 0;
     text-decoration: none;
-
     color: inherit;
 }
 
@@ -1342,9 +1337,7 @@ font-size:2.3rem;
 
 .gallery-cover {
     width: 100%;
-
     margin-bottom: 1.6rem;
-
     overflow: hidden;
 }
 
@@ -1979,9 +1972,10 @@ body.lightbox-open {
         font-size: 2.4rem;
     }
 
-    .gallery-place {
-        margin-bottom: 6rem;
-    }
+.gallery-places {
+    grid-template-columns: 1fr;
+    row-gap: 4.5rem;
+}
 
 
 
