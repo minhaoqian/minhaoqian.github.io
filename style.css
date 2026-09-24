@@ -2159,3 +2159,7 @@ body.lightbox-open {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3rem 2rem;
 }
+
+.southbound-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
