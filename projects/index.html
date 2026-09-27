@@ -2,88 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Projects</title>
+  <title>Projects · Minhao Qian</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../style.css">
 </head>
-  
+
 <body>
+
   <main class="page-container">
-    <h1>Projects</h1>
-    
+
     <div class="site-mark">
-  Neil. Q
-</div>
-  
-<nav class="top-nav">
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <span class="active">Projects</span>
-  <a href="/experience/">Experience</a>
-  <a href="/football/">Football</a>
-  <a href="/archive">Archive</a>
-  <a href="/travel/">Travel</a>
-</nav>
+      Neil. Q
+    </div>
 
-<div class="content-card">
-  <h2>Statistical Modelling — Brexit Voting Behaviour</h2>
-  <div class="project-meta">Mar 2025</div>
+    <nav class="top-nav">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <span class="active">Projects</span>
+      <a href="/experience/">Experience</a>
+      <a href="/football/">Football</a>
+      <a href="/archive/">Archive</a>
+      <a href="/travel/">Travel</a>
+    </nav>
 
-  <ul>
-    <li>
-      Investigated voting outcomes across 803 wards in England using R 
-      language.
-    </li>
-    <li>
-      Implemented PCA for dimensionality reduction and
-      hierarchical clustering to identify regional patterns among
-      socioeconomic and demographic variables.
-    </li>
-    <li>
-      Built a binomial GLM (R² &gt; 85%) using transformed factors and
-      predicted outcomes for 267 additional wards.
-    </li>
-  </ul>
-  <a href="computing_for_practical_statistics.html" class="project-link">
-  View full report
-</a>
+    <h1>Projects</h1>
 
-  <h2>Property Price Modelling and Sales Time Analysis</h2>
-<div class="project-meta">Nov 2024</div>
+    <div class="content-card">
 
-<ul>
-  <li>
-    Built and refined a normal linear regression model to explain residential property
-    prices using structural, locational, and transactional factors, achieving an
-    adjusted R² above 0.91 and identifying significant interaction effects between
-    district and property area.
-  </li>
-  <li>
-    Developed a binomial generalized additive model (GAM) to estimate the probability
-    of a property selling within two months, capturing nonlinear price effects by
-    estate agent and using model predictions to inform optimal agent selection.
-  </li>
-</ul>
-<a href="regression_modeling_2.html" class="project-link">
-  View full report
-</a>
-  
-  <h2>Pre-IPO Due Diligence — Grandall Law Firm</h2>
-  <div class="project-meta">Jun 2024</div>
+      <!-- Queueing Systems -->
+      <h2>Stochastic Modelling — Queueing Systems under Real-World Constraints</h2>
+      <div class="project-meta">Mar 2026</div>
 
-  <ul>
-    <li>
-      Conducted 40+ on-site audits across Marco Polo dealer stores in
-      Hebei and Jiangsu, verifying multi-year sales and procurement data 
-      for accuracy, consistency, and compliance.
-    </li>
-    <li>
-      Compiled audit evidence and prepared store-level verification reports
-      to support IPO disclosure requirements.
-    </li>
-  </ul>
-  
-</div>
+      <ul>
+        <li>
+          Built discrete-event simulations in R to compare centralized
+          M/M/c and parallel individual queueing systems under matched
+          arrival rates and service capacity.
+        </li>
+        <li>
+          Examined how heterogeneous service times, customer walking delays,
+          and finite queue capacity affect the efficiency gains from
+          resource pooling.
+        </li>
+        <li>
+          Modelled an express-lane system to analyse the trade-off between
+          overall system efficiency and waiting times for different customer
+          groups.
+        </li>
+      </ul>
+
+      <a href="GROUP01_ICA2.html" class="project-link">
+        View full report
+      </a>
+
+
+      <!-- Brexit -->
+      <h2>Statistical Modelling — Brexit Voting Behaviour</h2>
+      <div class="project-meta">Mar 2025</div>
+
+      <ul>
+        <li>
+          Investigated voting outcomes across 803 wards in England using R.
+        </li>
+        <li>
+          Applied PCA for dimensionality reduction and hierarchical
+          clustering to identify patterns across socioeconomic and
+          demographic variables.
+        </li>
+        <li>
+          Built a binomial GLM using transformed predictors and interaction
+          terms to predict voting outcomes across 267 additional wards.
+        </li>
+      </ul>
+
+      <a href="computing_for_practical_statistics.html" class="project-link">
+        View full report
+      </a>
+
+
+      <!-- Property Modelling -->
+      <h2>Property Price Modelling and Sales Time Analysis</h2>
+      <div class="project-meta">Nov 2024</div>
+
+      <ul>
+        <li>
+          Built and refined a linear regression model to explain residential
+          property prices using structural, locational, and transactional
+          factors, achieving an adjusted R² above 0.91 and identifying
+          significant interaction effects between district and property area.
+        </li>
+        <li>
+          Developed a binomial generalized additive model (GAM) to estimate
+          the probability of a property selling within two months, capturing
+          nonlinear price effects by estate agent and using model predictions
+          to inform agent selection.
+        </li>
+      </ul>
+
+      <a href="regression_modeling_2.html" class="project-link">
+        View full report
+      </a>
+
+    </div>
 
   </main>
+
 </body>
 </html>
